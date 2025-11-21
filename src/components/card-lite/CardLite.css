@@ -1,0 +1,36 @@
+.card-lite {
+    text-decoration: none;
+}
+
+.card-image {
+    overflow: hidden;
+    border-radius: var(--goa-border-radius-xl);
+}
+
+.card-image,
+.card-image img {
+    width: 100%;
+    display: block;
+}
+
+.card-heading {
+    color: var(--goa-color-greyscale-black);
+    display: inline-block;
+}
+
+.card-description {
+    color: var(--goa-color-greyscale-black);
+    display: block;
+}
+
+a:hover .card-heading {
+    color: var(--goa-color-interactive-hover);
+    text-decoration: underline;
+}
+
+.card-lite:focus-visible {
+    outline: 3px solid var(--goa-color-interactive-focus);
+    outline-offset: var(--goa-space-2xs);
+    border-radius: var(--goa-border-radius-m);
+}
+

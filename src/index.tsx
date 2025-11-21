@@ -1,27 +1,30 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import "@abgov/web-components";
 
-import { BasicFormRoute } from './routes/basic-form';
-import { BasicFormSuccessRoute } from './routes/basic-form-success';
-import { HomeRoute } from './routes/home';
+// Import all page components
+import { HomePage } from './routes/home';
+
 import App from './App';
 
 import './App.css';
+import {NotificationProvider} from "./contexts/NotificationContext";
+import {NotificationAdmin} from "./routes/NotificationAdmin";
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <React.StrictMode>
     <Router>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="basic-form-success" element={<BasicFormSuccessRoute />} />
-          <Route path="basic-form" element={<BasicFormRoute />} />
-          <Route path="/" element={<HomeRoute />} />
-        </Route>
-      </Routes>
+        <NotificationProvider>
+            <Routes>
+                <Route path="/" element={<App />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path={"notification-admin"} element={<NotificationAdmin/>}/>
+                </Route>
+            </Routes>
+        </NotificationProvider>
     </Router>
   </React.StrictMode>,
 );
