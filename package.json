@@ -14,9 +14,13 @@
     "@abgov/react-components": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/react-components",
     "@abgov/ui-components-common": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/common",
     "@abgov/web-components": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/web-components",
+    "directly": "^2.0.6",
+    "from": "^0.1.7",
+    "npm": "^11.6.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.30.1"
+    "react-router-dom": "^6.30.1",
+    "repository": "^0.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.26",

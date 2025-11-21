@@ -1,6 +1,6 @@
 import "./CardLite.css";
 import { ReactNode } from "react";
-import { GoabLink, GoabText } from "@abgov/react-components";
+import { GoabText } from "@abgov/react-components";
 
 export interface Props {
   title: string;
