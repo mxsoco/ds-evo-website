@@ -1,15 +1,17 @@
 @import "@abgov/web-components/index.css";
 
-/*   PAGE HEADER
-   ============================================================================ */
+/*   
+PAGE HEADER
+============================================================================ */
 
 .home-icon {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: var(--goa-space-s);
+    gap: var(--goa-space-m);
     text-decoration: none;
+    margin: 0 auto 0 0;
 }
 
 .page-header__content {
@@ -34,7 +36,7 @@
 @media (max-width: 623px) {
 
     .page-header {
-        padding: var(--goa-space-m) 0;
+        padding: var(--goa-space-l) var(--goa-space-m);
         width: 100%;
     }
 
@@ -45,8 +47,9 @@
         left: 0;
         right: 0;
         z-index: 100;
-        padding: var(--goa-space-s) var(--goa-space-m);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: var(--goa-space-s) var(--goa-space-l);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: padding 200ms ease-in;
     }
 
 }
@@ -62,6 +65,10 @@
     }
 
     .page-header {
+        display: none;
+    }
+    
+    .page-header__content {
         display: none;
     }
 

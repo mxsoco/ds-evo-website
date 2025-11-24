@@ -1,5 +1,6 @@
 .card-lite {
     text-decoration: none;
+    width: 100%;
 }
 
 .card-image {
@@ -28,7 +29,7 @@ a:hover .card-heading {
     text-decoration: underline;
 }
 
-.card-lite:focus-visible {
+.card-lite:focus {
     outline: 3px solid var(--goa-color-interactive-focus);
     outline-offset: var(--goa-space-2xs);
     border-radius: var(--goa-border-radius-m);

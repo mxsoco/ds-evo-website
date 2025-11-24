@@ -61,9 +61,3 @@
     }
 
 }
-
-@media screen and (min-width: 624px) {
-    .page-header__content {
-        display: none;
-    }
-}

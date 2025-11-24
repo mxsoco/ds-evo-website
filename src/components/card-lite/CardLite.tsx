@@ -1,6 +1,7 @@
 import "./CardLite.css";
 import { ReactNode } from "react";
 import { GoabText } from "@abgov/react-components";
+import { useMenu } from "../../contexts/MenuContext";
 
 export interface Props {
   title: string;
@@ -10,13 +11,14 @@ export interface Props {
 }
 
 export function CardLite(props: Props) {
+  const { isMobile } = useMenu();
   return (
     <a href={props.linkTo} className="card-lite">
       <div>
         <div className="card-image">
           <img src={props.imageURL}></img>
         </div>
-        <GoabText size="heading-m" mt="l" mb="m">
+        <GoabText size={isMobile ? "heading-s" : "heading-m"} mt="l" mb="m">
           <u>{props.title}</u>
         </GoabText>
         <GoabText size="body-m" mt="none" mb="xs">

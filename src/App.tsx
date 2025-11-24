@@ -38,7 +38,7 @@ export function App() {
     <MenuContext.Provider value={{ menuOpen, setMenuOpen, isMobile }}>
     <div style={{
       display: "flex",
-      height: "100vh",
+      height: isMobile ? "" : "100vh",
       overflow: "hidden",
       backgroundColor: "#F8F8F8"
     }}>
@@ -122,7 +122,7 @@ export function App() {
                   url="/settings"
               />
               <GoaxWorkSideMenuItem
-                  icon="settings"
+                  icon="notifications"
                   label="Release notes"
                   url="/settings"
               />
