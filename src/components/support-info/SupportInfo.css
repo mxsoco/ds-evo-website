@@ -1,0 +1,5 @@
+.support-info {
+  max-width: 700px;
+  margin-top: var(--goa-space-3xl);
+  margin-bottom:var(--goa-space-3xl);
+}

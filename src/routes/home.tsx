@@ -45,8 +45,10 @@ export function HomePage() {
           <GoabPageBlock width="1200px">
             <GoabBlock
               gap="2xl"
+              width="100%"
               direction={isTablet ? "column" : "row"}
               alignment={isTablet ? "left" : "center"}
+              maxWidth="100%"
             >
               <div className="card-image" style={{ flex: 1 }}>
                 <img src="/images/home/hero-banner-graphic.svg"></img>
@@ -70,6 +72,8 @@ export function HomePage() {
               mb={isTablet ? "3xl" : "4xl"}
               direction={isTablet ? "column" : "row"}
               alignment={isTablet ? "left" : "center"}
+              width="100%"
+              maxWidth="100%"
             >
               <div style={{ flex: 1 }}>
                 <GoabText size="heading-xl" mt="none">Build your service using the design system</GoabText>
@@ -82,7 +86,7 @@ export function HomePage() {
               </div>
               <div
                 className="card-image"
-                style={isTablet ? { flex: 1 } :{ flex: 2 }}
+                style={{ flex: 2 }}
               >
                 <img src="/images/home/splash-reel.png"></img>
               </div>

@@ -1,0 +1,73 @@
+.related-container {
+    width: 100%;
+}
+
+.related-container > a {
+    display: flex;
+    padding: var(--goa-space-l) var(--goa-space-l);
+    gap: var(--goa-space-m);
+    align-items: flex-start;
+    text-decoration: none;
+    border-radius: var(--goa-border-radius-m);
+    border: var(--goa-container-border);
+}
+
+.related-container > a:hover {
+    background: var(--goa-color-greyscale-50);
+}
+
+.related-container > a:focus,
+.related-container > a:active {
+    outline: var(--goa-border-width-l) solid var(--goa-color-interactive-focus);
+    outline-offset: var(--goa-button-outline-offset);
+}
+
+.related-container .related-content {
+    margin-right: auto;
+}
+
+.related-container .related-content h3 {
+    font: var(--goa-typography-heading-s);
+    margin-top: 0;
+    margin-bottom: var(--goa-space-s);
+}
+
+.related-container .related-content h3:last-child {
+    margin-bottom: 0;
+}
+
+.related-container > a .related-icon {
+    background: var(--goa-color-greyscale-150);
+    display: flex;
+    align-items: center;
+    padding: var(--goa-space-2xs);
+    border-radius: var(--goa-border-radius-xs)
+}
+
+.related-container > a .related-icon.components {
+    background: var(--goa-color-extended-prairie-light);
+}
+
+.related-container > a .related-icon.get-started {
+    background: var(--goa-color-extended-pasture-light);
+}
+
+.related-container > a .related-icon.tokens {
+    background: var(--goa-color-extended-dawn-light);
+}
+
+.related-container > a .related-icon.foundations {
+    background: var(--goa-color-extended-sky-light);
+}
+
+.related-container > a .related-icon.examples {
+    background: var(--goa-color-extended-sunset-light);
+}
+
+.related-container > a .related-icon.related-icon-bw {
+    background: var(--goa-color-greyscale-150);
+}
+
+.related-container h3 {
+    display: flex;
+}

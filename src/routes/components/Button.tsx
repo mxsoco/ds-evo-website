@@ -1,0 +1,274 @@
+import { useState } from "react";
+import {
+  GoabBadge,
+  GoabButton,
+  GoabTab,
+  GoabTabs,
+} from "@abgov/react-components";
+import { Sandbox, ComponentBinding } from "../../components/sandbox";
+import { CodeSnippet } from "../../components/code-snippet/CodeSnippet";
+import { Category, ComponentHeader } from "../../components/component-header/ComponentHeader";
+import {
+  ComponentProperties,
+  ComponentProperty,
+} from "../../components/component-properties/ComponentProperties";
+import ICONS from "../../routes/components/icons.json";
+import { ComponentContent } from "../../components/component-content/ComponentContent";
+import { ButtonExamples } from "../../examples/button/ButtonExamples";
+import {
+  LegacyMarginProperty,
+  LegacyTestIdProperties,
+  MarginProperty,
+  TestIdProperty
+} from "../../components/component-properties/common-properties";
+import ButtonGuidelines from "../../guidelines/ButtonGuidelines";
+import { AccessibilityEmpty } from "../../components/empty-states/accessibility-empty/AccessibilityEmpty";
+
+const FIGMA_LINK = "https://www.figma.com/design/3pb2IK8s2QUqWieH79KdN7/%E2%9D%96-Component-library-%7C-DDD?node-id=420-6810";
+
+export default function ButtonPage() {
+  const [buttonProps, setButtonProps] = useState({});
+  const [buttonBindings, setButtonBindings] = useState<ComponentBinding[]>([
+    {
+      label: "Type",
+      type: "list",
+      name: "type",
+      options: ["primary", "secondary", "tertiary", "start"],
+      value: "",
+      defaultValue: "primary",
+    },
+    {
+      label: "Size",
+      type: "list",
+      name: "size",
+      options: ["", "normal", "compact"],
+      value: "",
+    },
+    {
+      label: "Variant",
+      type: "list",
+      name: "variant",
+      options: ["", "normal", "destructive"],
+      value: "",
+    },
+    {
+      label: "Leading icon",
+      type: "combobox",
+      name: "leadingIcon",
+      options: [""].concat(ICONS),
+      value: "",
+    },
+    {
+      label: "Trailing Icon",
+      type: "combobox",
+      name: "trailingIcon",
+      options: [""].concat(ICONS),
+      value: "",
+    },
+    {label: "Width", type: "string", name: "width", value: ""},
+    { label: "Disabled", type: "boolean", name: "disabled", value: false },
+  ]);
+  const oldComponentProperties: ComponentProperty[] = [
+    {
+      name: "type",
+      type: "primary | secondary | tertiary | start",
+      description: "Sets the type of button.",
+      defaultValue: "primary",
+    },
+    {
+      name: "size",
+      type: "normal | compact",
+      defaultValue: "normal",
+      description: "Sets the size of button.",
+    },
+    {
+      name: "variant",
+      type: "normal | destructive",
+      defaultValue: "normal",
+      description: "Styles the button to show a destructive action.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      defaultValue: "false",
+      description: "Disables the button.",
+    },
+    {
+      name: "leadingIcon",
+      type: "GoAIconType",
+      lang: "react",
+      description: "Shows an icon to the left of the text.",
+    },
+    {
+      name: "leadingicon",
+      type: "GoAIconType",
+      lang: "angular",
+      description: "Shows an icon to the left of the text.",
+    },
+    {
+      name: "trailingIcon",
+      type: "GoAIconType",
+      lang: "react",
+      description: "Shows an icon to the right of the text.",
+    },
+    {
+      name: "trailingicon",
+      type: "GoAIconType",
+      lang: "angular",
+      description: "Shows an icon to the right of the text.",
+    },
+    {
+      name: "width",
+      type: "string",
+      description: "Sets the width of the button.",
+    },
+    {
+      name: "_click",
+      lang: "angular",
+      type: "CustomEvent",
+      description: "Callback function when button is clicked.",
+    },
+    {
+      name: "onClick",
+      lang: "react",
+      type: "(e: any) => void",
+      description: "Callback function when button is clicked.",
+    },
+    ...LegacyTestIdProperties,
+    LegacyMarginProperty
+  ];
+  const componentProperties: ComponentProperty[] = [
+    {
+      name: "type",
+      type: "GoabButtonType (primary | secondary | tertiary | start)",
+      description: "Sets the type of button.",
+      defaultValue: "primary",
+    },
+    {
+      name: "size",
+      type: "GoabButtonSize (normal | compact)",
+      defaultValue: "normal",
+      description: "Sets the size of button.",
+    },
+    {
+      name: "variant",
+      type: "GoabButtonVariant (normal | destructive)",
+      defaultValue: "normal",
+      description: "Styles the button to show a destructive action.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      defaultValue: "false",
+      description: "Disables the button.",
+    },
+    {
+      name: "leadingIcon",
+      type: "GoabIconType",
+      description: "Shows an icon to the left of the text.",
+    },
+    {
+      name: "trailingIcon",
+      type: "GoabIconType",
+      description: "Shows an icon to the right of the text.",
+    },
+    {
+      name: "width",
+      type: "string",
+      description: "Sets the width of the button.",
+    },
+    {
+      name: "onClick",
+      type: "() => void",
+      description: "Callback function when button is clicked.",
+    },
+    TestIdProperty,
+    MarginProperty,
+  ];
+
+  const noop = () => {};
+
+  function SandboxOnChange(bindings: ComponentBinding[], props: Record<string, unknown>) {
+    setButtonBindings(bindings);
+    setButtonProps(props);
+  }
+
+  return (
+    <>
+      <ComponentHeader
+          name="Button"
+          category={Category.INPUTS_AND_ACTIONS}
+          description="Carry out an important action or to navigate to another page."
+      />
+      <Sandbox
+          figmaLink={FIGMA_LINK}
+          githubLink="Button"
+          properties={buttonBindings}
+          onChange={SandboxOnChange}
+      >
+
+          <CodeSnippet
+              lang="typescript"
+              tags="angular"
+              allowCopy={true}
+              code={`
+              export class SomeOtherComponent {
+                  onClick() {
+                  console.log('clicked');
+                  }
+              }
+              `}
+          />
+          <CodeSnippet
+              lang="typescript"
+              tags="react"
+              allowCopy={true}
+              code={`
+              function onClick() {
+                  console.log('clicked');
+              }
+              `}
+          />
+          <GoabButton {...buttonProps} onClick={noop}>
+              Primary Button
+          </GoabButton>
+      </Sandbox>
+
+      <GoabTabs initialTab={1} mb="3xs" mt="3xl">
+          <GoabTab heading="Properties">
+              <ComponentContent tocCssQuery="goa-tab[open=true] :is(h2[id], h3[id])">
+                  <ComponentProperties
+                      oldProperties={oldComponentProperties}
+                      properties={componentProperties}
+                  />
+              </ComponentContent>
+          </GoabTab>
+
+          <GoabTab heading="Usage guidelines">
+              <ComponentContent tocCssQuery="goa-tab[open=true] :is(h2[id], h3[id])">
+                  <ButtonGuidelines />
+              </ComponentContent>
+          </GoabTab>
+
+          <GoabTab
+              heading={
+                  <>
+                      Examples
+                      <GoabBadge type="information" content="4" />
+                  </>
+              }
+          >
+              <ComponentContent tocCssQuery="goa-tab[open=true] :is(h2[id], h3[id])">
+                  <ButtonExamples />
+              </ComponentContent>
+          </GoabTab>
+
+          <GoabTab heading="Accessibility">
+              <ComponentContent tocCssQuery="goa-tab[open=true] :is(h2[id], h3[id])">
+                  <AccessibilityEmpty figmaLink={FIGMA_LINK} />
+              </ComponentContent>
+          </GoabTab>
+      </GoabTabs>
+    </>
+  );
+}

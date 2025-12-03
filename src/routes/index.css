@@ -1,6 +1,7 @@
 .ds-hero-banner {
     width: 100%;
     min-height: 700px;
+    border-radius: 24px 24px 0 0;
     margin: 0;
     display: grid;
     align-items: center;
@@ -53,6 +54,7 @@
         min-height: 515px;
         display: flex;
         flex-direction: column;
+        border-radius: 0;
     }
 
     .ds-hero-banner,

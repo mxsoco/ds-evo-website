@@ -1,5 +1,4 @@
 @import "@abgov/web-components/index.css";
-
 /*   
 PAGE HEADER
 ============================================================================ */
@@ -32,15 +31,175 @@ PAGE HEADER
     display: block;
     width: 100%;
 }
+/* ============================================================================
+   APP LAYOUT
+   ============================================================================ */
 
-@media (max-width: 623px) {
+/* Main app container */
+.app-layout {
+  display: flex;
+  /*height: 100vh;*/
+  overflow: hidden;
+  background-color: #F8F8F8;
+}
 
+/* Error pages (404, 401, 500) */
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: var(--goa-space-3xl) var(--goa-space-xl) 128px;
+}
+
+.error-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.error-page-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--goa-color-greyscale-100);
+}
+
+.error-page-underline {
+  width: 110px;
+  height: 8px;
+  background-color: var(--goa-color-brand-default);
+  margin-top: var(--goa-space-m);
+}
+
+/* ============================================================================
+   DESKTOP CARD CONTAINER - Adaptive chrome based on vertical scroll state
+   ============================================================================
+   The content card "floats" on the grey background. Margins, borders, and
+   border-radius appear/disappear based on scroll position:
+   - no-scroll: All chrome visible (content fits in viewport)
+   - at-top: Top chrome visible, bottom bleeds off
+   - middle: No chrome, content edge-to-edge
+   - at-bottom: Bottom chrome visible, top bleeds off
+
+   IMPORTANT: Height stays constant to prevent layout jitter. We use padding
+   on the wrapper (.card-container) to create space, not height changes.
+   ============================================================================ */
+
+/* Wrapper - provides the spacing around the card */
+.card-container {
+  transition: padding 0.2s ease;
+}
+
+.card-container:has([data-scroll-state="no-scroll"]) {
+  padding: 20px 20px 20px 0;
+}
+
+.card-container:has([data-scroll-state="at-top"]) {
+  padding: 20px 20px 0 0;
+}
+
+.card-container:has([data-scroll-state="middle"]) {
+  padding: 0 20px 0 0;
+}
+
+.card-container:has([data-scroll-state="at-bottom"]) {
+  padding: 0 20px 20px 0;
+}
+
+/* Card itself - height always 100% of available space */
+.desktop-card-container {
+  background-color: white;
+  height: 100%;
+  /*overflow: auto;*/
+  transition: border-radius 0.2s ease, border-color 0.2s ease;
+}
+
+/* No scroll - full chrome (all borders, all radius) */
+.desktop-card-container[data-scroll-state="no-scroll"] {
+  border: 1px solid #E9E9E9;
+  border-radius: 24px;
+}
+
+/* At top - top chrome only */
+.desktop-card-container[data-scroll-state="at-top"] {
+  border: 1px solid #E9E9E9;
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+}
+
+/* Middle - side borders only, no top/bottom chrome */
+.desktop-card-container[data-scroll-state="middle"] {
+  border: 1px solid #E9E9E9;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+}
+
+/* At bottom - bottom chrome only */
+.desktop-card-container[data-scroll-state="at-bottom"] {
+  border: 1px solid #E9E9E9;
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+}
+
+/* ============================================================================
+   SCROLL CONTAINER - Horizontal scroll shadows with gradient overlays
+   ============================================================================ */
+
+.scroll-container {
+  position: relative;
+  /* Constrain width so content doesn't expand parent - enables horizontal scroll */
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  /* Hide the native scrollbar on the content - we'll use the fixed one instead */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* Ensure the table inside doesn't shrink - margins handled by table wrapper */
+.scroll-container > * {
+  min-width: max-content;
+}
+
+/* Fixed scrollbar that stays at bottom of card container */
+.scroll-container-scrollbar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 14px;
+  z-index: 100;
+}
+
+/* Inner element that provides the scroll width */
+.scroll-container-scrollbar-inner {
+  height: 1px;
+}
+
+@media screen and (max-width: 623px) {
+
+    .app-layout {
+        height: 100vh;
+    }
+        
     .page-header {
-        padding: var(--goa-space-l) var(--goa-space-m);
+        padding: var(--goa-space-l);
         width: 100%;
+        top: 0;
+        z-index: 100;
+        margin-bottom: 0;
+        transition: padding 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .page-header--sticky {
+    .page-header--collapsed {
         background-color: white;
         position: fixed;
         top: 0;
@@ -48,13 +207,34 @@ PAGE HEADER
         right: 0;
         z-index: 100;
         padding: var(--goa-space-s) var(--goa-space-l);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-bottom: 1px solid var(--goa-color-greyscale-150);
+        box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         transition: padding 200ms ease-in;
+    }
+    
+    .error-page {
+        /* Subtract approximate header height (icon button ~44px + padding 32px) to prevent unnecessary scroll */
+        min-height: calc(100% - 76px);
+        padding: var(--goa-space-xl) var(--goa-space-m) 96px;
+    }
+    
+    .page-header__title-container > goa-icon-button:first-child {
+        margin-left: -12px;
     }
 
 }
 
-@media (min-width: 624px) {
+@media screen and (max-width: 1024px) {
+  .error-page {
+    padding: var(--goa-space-2xl) var(--goa-space-xl) 112px;
+  }
+}
+
+@media screen and (min-width: 624px) {
+
+    .app-layout {
+        overflow: unset;
+    }
 
     .page-header__actions {
         display: flex;
@@ -71,5 +251,16 @@ PAGE HEADER
     .page-header__content {
         display: none;
     }
+    
+    .desktop-card-container .page-header {
+        display: none;
+    }
 
+}
+
+@media screen and (max-width: 960px) {
+  .ds-main-content goa-tabs {
+    width: 100%;
+    display: block;
+  }
 }

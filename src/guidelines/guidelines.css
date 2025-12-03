@@ -1,0 +1,23 @@
+.anatomy-listing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--goa-space-m);
+
+}
+
+div.anatomy-listing > .anatomy-listing-single {
+  display: flex;
+  align-items: center;
+  gap: var(--goa-space-xs);
+}
+
+div.anatomy-listing > .anatomy-listing-single > .anatomy-listing-number {
+  background-color: var(--goa-color-greyscale-black);
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: var(--goa-color-greyscale-white);
+  font: var(--goa-typography-body-xs);
+  font-weight: var(--goa-font-weight-bold);
+}

@@ -1,0 +1,37 @@
+.sandbox-note {
+  color: #666;
+  margin-top: var(--goa-space-m);
+  margin-bottom: var(--goa-space-2xl);
+  font: var(--goa-typography-body-s);
+}
+
+.sandbox-render {
+  border-radius: 4px;
+  border: var(--goa-border-width-s) solid var(--goa-color-greyscale-200);
+  background: var(--goa-color-greyscale-white);
+  padding: var(--goa-space-3xl);
+  display: flex;
+  justify-content: space-around;
+}
+
+.sandbox-render-fullwidth {
+  width: 100%;
+}
+
+.sandbox-container {
+  display: flex;
+  gap: 1.5rem 2.5rem;
+  flex-flow: wrap;
+}
+
+.sandbox-render-centered {
+  /*  */
+}
+
+@media screen and (max-width: 623px) {
+  .sandbox-render {
+    /*make sure preview element will inherit component width*/
+    display: block;
+    padding: var(--goa-space-xl);
+  }
+}

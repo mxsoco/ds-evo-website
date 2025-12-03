@@ -1,0 +1,39 @@
+.do-container {
+  font-size: var(--goa-font-size-5);
+  border: var(--goa-border-width-s) solid var(--goa-color-greyscale-200);
+  padding: 3rem;
+}
+
+.do-container.do-image-container {
+  padding: 0;
+}
+
+.do-container.do-image-container img {
+  display: block;
+}
+
+.description.type-generic{
+  margin-top: var(--goa-space-m);
+}
+
+.do-content {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-top: 1.25rem solid;
+  font: var(--goa-typography-body-s);
+  font-weight: var(--goa-font-weight-bold);
+  color: var(--goa-color-success-default);
+}
+
+.content-label {
+  padding-bottom: var(--font-valign-fix);
+  padding-top: var(--goa-space-2xs);
+}
+
+[data-positive="dont"].do-content {
+  color: var(--goa-color-emergency-dark);
+}
+

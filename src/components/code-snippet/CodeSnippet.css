@@ -1,0 +1,60 @@
+.goa-code-snippet {
+  border: 1px solid var(--goa-color-greyscale-200);
+  border-radius: 4px;
+  margin-top: var(--goa-space-m);
+  overflow: hidden;
+  max-height: 20rem;
+  position: relative;
+  font: var(--goa-typography-number-s);
+}
+
+.goa-code-snippet pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding-right: var(--goa-space-2xl); /** to not overlap with copy button **/
+  background-color: var(--goa-color-greyscale-100);
+}
+
+.goa-code-snippet.overflow pre {
+  padding-bottom: var(--goa-space-xl); /** to not overlap with show more/less button **/
+  padding-right: var(--goa-space-3xl); /** to not overlap with copy button **/
+  background-color: var(--goa-color-greyscale-100);
+}
+
+.goa-code-snippet pre code {
+  background-color: var(--goa-color-greyscale-100);
+}
+
+.goa-code-snippet.overflow .gradient {
+  height: 120px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(241, 241, 241, 0.90) 36.01%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+.goa-code-snippet-actions--show-more {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--goa-space-xs);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.goa-code-snippet-actions--copy {
+  position: absolute;
+  top: var(--goa-space-xs);
+  right: var(--goa-space-xs);
+}
+
+@media screen and (max-width: 623px) {
+  /*TODO: Will use snackbar notification later for Copied effect*/
+  .goa-code-snippet .copy-feedback {
+    float: none;
+  }
+}
