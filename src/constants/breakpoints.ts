@@ -3,3 +3,4 @@
  * Mobile breakpoint matches the GoA Design System side menu behavior
  */
 export const MOBILE_BREAKPOINT = 624;
+export const TABLET_BREAKPOINT = 1200;

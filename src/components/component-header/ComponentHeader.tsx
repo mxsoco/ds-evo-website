@@ -21,7 +21,7 @@ export const ComponentHeader: React.FC<Props> = (props) => {
   return (
 
     <div className="component-header" >
-      <GoabBadge type="default" content={props.category} />
+      <GoabBadge type="default" emphasis="subtle" content={props.category} />
 
       <GoabBlock gap="2xl" alignment="center">
         <GoabText size="heading-xl" mt="s" mb="xs">

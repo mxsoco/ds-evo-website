@@ -95,58 +95,6 @@ PAGE HEADER
   transition: padding 0.2s ease;
 }
 
-.card-container:has([data-scroll-state="no-scroll"]) {
-  padding: 20px 20px 20px 0;
-}
-
-.card-container:has([data-scroll-state="at-top"]) {
-  padding: 20px 20px 0 0;
-}
-
-.card-container:has([data-scroll-state="middle"]) {
-  padding: 0 20px 0 0;
-}
-
-.card-container:has([data-scroll-state="at-bottom"]) {
-  padding: 0 20px 20px 0;
-}
-
-/* Card itself - height always 100% of available space */
-.desktop-card-container {
-  background-color: white;
-  height: 100%;
-  /*overflow: auto;*/
-  transition: border-radius 0.2s ease, border-color 0.2s ease;
-}
-
-/* No scroll - full chrome (all borders, all radius) */
-.desktop-card-container[data-scroll-state="no-scroll"] {
-  border: 1px solid #E9E9E9;
-  border-radius: 24px;
-}
-
-/* At top - top chrome only */
-.desktop-card-container[data-scroll-state="at-top"] {
-  border: 1px solid #E9E9E9;
-  border-bottom: none;
-  border-radius: 24px 24px 0 0;
-}
-
-/* Middle - side borders only, no top/bottom chrome */
-.desktop-card-container[data-scroll-state="middle"] {
-  border: 1px solid #E9E9E9;
-  border-top: none;
-  border-bottom: none;
-  border-radius: 0;
-}
-
-/* At bottom - bottom chrome only */
-.desktop-card-container[data-scroll-state="at-bottom"] {
-  border: 1px solid #E9E9E9;
-  border-top: none;
-  border-radius: 0 0 24px 24px;
-}
-
 /* ============================================================================
    SCROLL CONTAINER - Horizontal scroll shadows with gradient overlays
    ============================================================================ */
@@ -211,6 +159,14 @@ PAGE HEADER
         box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         transition: padding 200ms ease-in;
     }
+
+    .card-container:has([data-scroll-state]) {
+        padding: 0;
+    }
+
+    .card-container:has([data-scroll-state]) > * {
+        border-radius: 0;
+    }
     
     .error-page {
         /* Subtract approximate header height (icon button ~44px + padding 32px) to prevent unnecessary scroll */
@@ -231,6 +187,63 @@ PAGE HEADER
 }
 
 @media screen and (min-width: 624px) {
+
+    .card-container,
+    .card-container:has([data-scroll-state="no-scroll"]) {
+      padding: 20px 20px 20px 0;
+    }
+
+    .card-container:has([data-scroll-state="at-top"]) {
+      padding: 20px 20px 0 0;
+    }
+
+    .card-container:has([data-scroll-state="middle"]) {
+      padding: 0 20px 0 0;
+    }
+
+    .card-container:has([data-scroll-state="at-bottom"]) {
+      padding: 0 20px 20px 0;
+    }
+
+    .card-container > * {
+      border-radius: 1.5rem;
+      border: 1px solid #E9E9E9;
+    }
+
+    /* Card itself - height always 100% of available space */
+    .desktop-card-container {
+      background-color: white;
+      height: 100%;
+      transition: border-radius 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* No scroll - full chrome (all borders, all radius) */
+    .desktop-card-container[data-scroll-state="no-scroll"] {
+      border: 1px solid #E9E9E9;
+      border-radius: 24px;
+    }
+
+    /* At top - top chrome only */
+    .desktop-card-container[data-scroll-state="at-top"] {
+      border: 1px solid #E9E9E9;
+      border-bottom: none;
+      border-radius: 24px 24px 0 0;
+    }
+
+    /* Middle - side borders only, no top/bottom chrome */
+    .desktop-card-container[data-scroll-state="middle"] {
+      border: 1px solid #E9E9E9;
+      border-top: none;
+      border-bottom: none;
+      border-radius: 0;
+    }
+
+    /* At bottom - bottom chrome only */
+    .desktop-card-container[data-scroll-state="at-bottom"] {
+      border: 1px solid #E9E9E9;
+      border-top: none;
+      border-radius: 0 0 24px 24px;
+    }
 
     .app-layout {
         overflow: unset;

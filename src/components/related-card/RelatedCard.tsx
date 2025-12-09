@@ -1,17 +1,17 @@
-import { GoabBadge, GoabContainer, GoabIcon, GoabLink, GoabText } from "@abgov/react-components";
+import { ReactNode } from "react";
+import { GoabBadge, GoabIcon, GoabText } from "@abgov/react-components";
 import "./RelatedCard.css";
-import { MenuContext, useMenu } from '../../contexts/MenuContext';
 
 type RelatedCategory = "components" | "examples" | "get-started" | "foundations" | "tokens";
 interface Props {
+  children?: ReactNode;
   type: RelatedCategory;
   title: string;
   url?: string;
   githubURL?: string;
 }
 
-export function Related({ type, title, url, githubURL }: Props) {
-  const { isMobile } = useMenu();
+export function Related({ type, title, url, githubURL, children }: Props) {
 
   return (
     <div className="related-container">
@@ -61,20 +61,20 @@ export function Related({ type, title, url, githubURL }: Props) {
             {githubURL && <GoabIcon ml="2xs" fillColor="var(--goa-color-interactive-default);" type="open"/>}
           </h3>
 
-          {githubURL && (
+          {githubURL ? 
             <GoabText mb="none">
-                Visit the GitHub issue for more information.
+              Visit the GitHub issue for more information.
             </GoabText>
-          )}
+            : 
+            <div className="related-description">
+              {children}
+            </div>
+          }
 
-          {(githubURL && isMobile) && (
-            <GoabBadge mt="s" type="default" content="Not published" />
+          {(githubURL) && (
+            <GoabBadge mt="s" type="default" emphasis="subtle" content="Not published" />
           )}
         </div>
-
-        {(githubURL && !isMobile) && (
-          <GoabBadge type="default" content="Not published" />
-        )}
       </a>
     </div>
   );

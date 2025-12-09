@@ -10,7 +10,7 @@ import {
 import CardLite from "../components/card-lite/CardLite";
 import { useMenu } from "../contexts/MenuContext";
 import { PageHeader } from "../components/PageHeader";
-import "./index.css";
+import "./home.css";
 
 export function HomePage() {
 

@@ -36,7 +36,7 @@ export const CodeSnippet: FC<Props> = ({ lang, allowCopy, code, children, tags }
   useEffect(() => {
     if (!codeSnippetRef.current) return;
     const resizeObserver = new ResizeObserver(() => {
-      const showMore = codeSnippetRef.current ? codeSnippetRef.current?.scrollHeight > 350 : false; // 400px = 25rem and some padding
+      const showMore = codeSnippetRef.current ? codeSnippetRef.current?.scrollHeight > 300 : false; // 400px = 25rem and some padding
       setShowMore(showMore);
     });
     resizeObserver.observe(codeSnippetRef.current);

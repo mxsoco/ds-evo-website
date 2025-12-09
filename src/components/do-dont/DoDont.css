@@ -1,3 +1,7 @@
+goa-grid {
+  --min-child-width: auto;
+}
+
 .do-container {
   font-size: var(--goa-font-size-5);
   border: var(--goa-border-width-s) solid var(--goa-color-greyscale-200);

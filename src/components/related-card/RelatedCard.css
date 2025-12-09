@@ -10,6 +10,7 @@
     text-decoration: none;
     border-radius: var(--goa-border-radius-m);
     border: var(--goa-container-border);
+    height: 100%;
 }
 
 .related-container > a:hover {

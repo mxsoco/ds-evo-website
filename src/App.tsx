@@ -7,67 +7,56 @@ import {
   GoabSpacer,
 } from "@abgov/react-components";
 
-import { Outlet, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { MenuContext, useMenu } from './contexts/MenuContext';
 import { PageHeaderProvider } from './contexts/PageHeaderContext';
 import { ScrollStateProvider, useScrollState } from './contexts/ScrollStateContext';
 import { PageHeader } from './components/PageHeader';
-import { MOBILE_BREAKPOINT } from "./constants/breakpoints";
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "./constants/breakpoints";
 
-// Inner component that can use ScrollState context
 function WorkspaceContent() {
+  const location = useLocation();
   const isHomeActive = location.pathname === '/';
   const { isMobile } = useMenu();
   const { scrollPosition } = useScrollState();
 
-  if (isMobile) {
-    // Mobile: No adaptive chrome, content edge-to-edge
-    return (
-      <div
-      className="mobile-content-container"
-      style={{
-        backgroundColor: "white",
-        height: "100%",
-        overflow: "auto",
-      }}>
-        {!isHomeActive && ( // If DS "Homepage", do not apply PageHeader on this file
-          <PageHeader title="Design system" />
-        )}
-        <Outlet />
-      </div>
-    );
-  }
-
-  // Desktop: Card container with adaptive chrome based on scroll state
   return (
-    <div 
-      className="desktop-card-container"
-      data-scroll-state={scrollPosition}
+    <div
+      className={isMobile ? "mobile-content-container" : "desktop-card-container"}
+      data-scroll-state={isMobile ? undefined : scrollPosition}
+      style={isMobile ? { backgroundColor: "white", height: "100%", overflow: "auto" } : undefined}
     >
+      {/* Only show the PageHeader on mobile when not on the homepage */}
+      {isMobile && !isHomeActive && <PageHeader title="Design system" />}
       <Outlet />
     </div>
   );
 }
 
+const MENU_STATE_KEY = 'workspace-menu-open';
+
+function getInitialMenuState(): boolean {
+  // On mobile, always start closed
+  if (window.innerWidth < MOBILE_BREAKPOINT) {
+    return false;
+  }
+  // On desktop, check localStorage for saved preference
+  const saved = localStorage.getItem(MENU_STATE_KEY);
+  if (saved !== null) {
+    return saved === 'true';
+  }
+  // Default to open on desktop
+  return true;
+}
+
 export function App() {
   const navigate = useNavigate();
-  const [isTablet, setIsTablet] = useState(window.innerWidth < 1200);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const tablet = width < 1200;
-      setIsTablet(tablet);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // On mobile (< MOBILE_BREAKPOINT), start with menu closed; on desktop, start with menu open
-  const [menuOpen, setMenuOpen] = useState(window.innerWidth >= MOBILE_BREAKPOINT);
+  const [menuOpen, setMenuOpen] = useState(getInitialMenuState);
+  const [isTablet, setIsTablet] = useState(window.innerWidth < TABLET_BREAKPOINT);
   const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
+
 
   // Navigate and close menu on mobile
   const handleNavigate = (path: string) => {
@@ -76,21 +65,53 @@ export function App() {
   };
 
   // Single resize handler - manages both isMobile state and menu visibility
+  // Single debounced resize handler to avoid excessive re-renders and unexpected menu toggles
+  const resizeTimer = useRef<number | null>(null);
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       const mobile = width < MOBILE_BREAKPOINT;
+      const tablet = width < TABLET_BREAKPOINT;
 
-      setIsMobile(mobile);
+      // Only update states when their value would change
+      setIsTablet(prev => (prev === tablet ? prev : tablet));
+      setIsMobile(prev => (prev === mobile ? prev : mobile));
 
+      // If we cross into mobile, ensure the side menu is closed. Do not close on every small shrink.
       if (mobile) {
         setMenuOpen(false);
       }
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const debounced = () => {
+      if (resizeTimer.current) {
+        window.clearTimeout(resizeTimer.current);
+      }
+      resizeTimer.current = window.setTimeout(() => {
+        handleResize();
+      }, 120);
+    };
+
+    window.addEventListener('resize', debounced);
+    // Run once to normalize initial state if needed
+    debounced();
+
+    return () => {
+      window.removeEventListener('resize', debounced);
+      if (resizeTimer.current) {
+        window.clearTimeout(resizeTimer.current);
+      }
+    };
+  }, [setMenuOpen]);
+
+  // Persist menu state to localStorage (desktop only)
+  useEffect(() => {
+    if (!isMobile) {
+      localStorage.setItem(MENU_STATE_KEY, String(menuOpen));
+    }
+  }, [menuOpen, isMobile]);
+
+  console.log('[App] Rendering, menuOpen:', menuOpen, 'isMobile:', isMobile);
 
   return (
     <MenuContext.Provider value={{ menuOpen, setMenuOpen, isMobile }}>
@@ -178,18 +199,18 @@ export function App() {
                   secondaryContent={
                     <>
                       <GoabxWorkSideMenuItem
-                          icon="search"
-                          label="Search"
-                          type="normal"
-                          badge="/"
-                          url={"/support"}
-                          onClick={() => handleNavigate("/support")}
-                      />
-                      <GoabxWorkSideMenuItem
                           icon="settings"
                           label="Get support"
                           url={"/settings"}
                           onClick={() => handleNavigate("/settings")}
+                      />
+                      <GoabxWorkSideMenuItem
+                          icon="search"
+                          label="Search"
+                          type="default"
+                          badge="/"
+                          url={"/support"}
+                          onClick={() => handleNavigate("/support")}
                       />
                       <GoabxWorkSideMenuItem
                           icon="notifications"

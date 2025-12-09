@@ -12,7 +12,7 @@ interface Props {
 
 export function DoDont({ type, children, description, image }: Props) {
   return (
-    <div>
+    <div className="do-wrapper">
       {image ?
         <div className="do-container do-image-container">
           <img src={image} width="100%"></img> 

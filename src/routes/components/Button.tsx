@@ -4,8 +4,10 @@ import {
   GoabButton,
   GoabTab,
   GoabTabs,
+  GoabDrawer,
 } from "@abgov/react-components";
 import { Sandbox, ComponentBinding } from "../../components/sandbox";
+import SandboxProperties from "../../components/sandbox/SandboxProperties";
 import { CodeSnippet } from "../../components/code-snippet/CodeSnippet";
 import { Category, ComponentHeader } from "../../components/component-header/ComponentHeader";
 import {
@@ -23,11 +25,13 @@ import {
 } from "../../components/component-properties/common-properties";
 import ButtonGuidelines from "../../guidelines/ButtonGuidelines";
 import { AccessibilityEmpty } from "../../components/empty-states/accessibility-empty/AccessibilityEmpty";
+import { SupportInfo } from "../../components/support-info/SupportInfo";
 
 const FIGMA_LINK = "https://www.figma.com/design/3pb2IK8s2QUqWieH79KdN7/%E2%9D%96-Component-library-%7C-DDD?node-id=420-6810";
 
 export default function ButtonPage() {
   const [buttonProps, setButtonProps] = useState({});
+  const [controlsOpen, setControlsOpen] = useState(false);
   const [buttonBindings, setButtonBindings] = useState<ComponentBinding[]>([
     {
       label: "Type",
@@ -193,6 +197,16 @@ export default function ButtonPage() {
     setButtonProps(props);
   }
 
+  function bindingsToKeyValue(bindings: ComponentBinding[]) {
+    return bindings.reduce((acc: Record<string, unknown>, prop: ComponentBinding) => {
+      if (typeof prop.value === "string" && prop.value === "") {
+        return acc;
+      }
+      acc[prop.name] = prop.value;
+      return acc;
+    }, {});
+  }
+
   return (
     <>
       <ComponentHeader
@@ -200,11 +214,12 @@ export default function ButtonPage() {
           category={Category.INPUTS_AND_ACTIONS}
           description="Carry out an important action or to navigate to another page."
       />
-      <Sandbox
+        <Sandbox
           figmaLink={FIGMA_LINK}
           githubLink="Button"
           properties={buttonBindings}
           onChange={SandboxOnChange}
+          onControlsOpen={() => setControlsOpen(true)}
       >
 
           <CodeSnippet
@@ -254,7 +269,7 @@ export default function ButtonPage() {
               heading={
                   <>
                       Examples
-                      <GoabBadge type="information" content="4" />
+                      <GoabBadge type="default" emphasis="subtle" content="4" />
                   </>
               }
           >
@@ -269,6 +284,24 @@ export default function ButtonPage() {
               </ComponentContent>
           </GoabTab>
       </GoabTabs>
+
+      <SupportInfo />
+      <GoabDrawer
+          heading="Playground controls"
+          position="right"
+          mt="m"
+          onClose={() => setControlsOpen(false)}
+          open={controlsOpen}
+        >
+          {/* No formItemProperties for Button page currently; render main properties editor */}
+          <SandboxProperties
+            properties={buttonBindings}
+            onChange={(bindings) => {
+              setButtonBindings(bindings);
+              setButtonProps(bindingsToKeyValue(bindings));
+            }}
+          />
+        </GoabDrawer>
     </>
   );
 }

@@ -3,7 +3,6 @@ import ComponentsPage from "./routes/components/Components";
 import ComponentNotFoundPage from "./routes/not-found/NotFound";
 import ButtonPage from "./routes/components/Button";
 import {
-  VERSIONED_ANGULAR_URL_SEGMENT,
   VERSIONED_REACT_URL_SEGMENT,
 } from "./components/version-language-switcher/version-language-constants";
 
@@ -21,7 +20,7 @@ const VersionedComponentRoute: React.FC<{
   if (!version || !component) {
     return <ComponentNotFoundPage />;
   }
-  const supportedVersions = [VERSIONED_ANGULAR_URL_SEGMENT, VERSIONED_REACT_URL_SEGMENT];
+  const supportedVersions = [VERSIONED_REACT_URL_SEGMENT];
   if (!supportedVersions.includes(version)) {
     return <ComponentNotFoundPage />;
   }
@@ -44,6 +43,9 @@ export const ComponentsRouter = () => {
         {/* Non-versioned paths components */}
         <Route index element={<ButtonPage />} />
         <Route path=":component" element={<ComponentRoute versionedPaths={componentPaths} />} />
+
+        {/* Versioned paths components */}
+        <Route path=":version/:component" element={<VersionedComponentRoute versionedPaths={componentPaths}/>} />
 
       </Route>
     </Routes>

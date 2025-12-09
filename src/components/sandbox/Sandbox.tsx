@@ -17,7 +17,7 @@ import { LanguageVersionContext } from "../../contexts/LanguageVersionContext";
 import { AngularTemplateDrivenSerializer } from "../../components/sandbox/AngularTemplateDrivenSerializer";
 import { LanguageVersion } from "../../components/version-language-switcher/version-language-constants";
 import { toSentenceCase, fetchAllIssueCounts, fetchComponentMetadataFromProject } from "../../utils";
-import { GoabBlock, GoabButton, GoabDrawer, GoabIcon, GoabSpacer } from "@abgov/react-components";
+import { GoabBlock, GoabButton, GoabIcon, GoabSpacer, GoabTooltip } from "@abgov/react-components";
 
 type Flag = "reactive" | "template-driven" | "event";
 type ComponentType = "goa" | "codesnippet";
@@ -40,6 +40,7 @@ interface SandboxProps {
   children: ReactNode;
   background?: string;
   githubLink?: string;
+  onControlsOpen?: () => void;
   figmaLink?: string;
 }
 
@@ -81,13 +82,10 @@ export const Sandbox = (props: SandboxProps) => {
     angular: "html",
   };
 
-  const [open, setOpen] = useState(false);
   const [issueCount, setIssueCount] = useState<number | null>(null);
+  
   function onDrawerClick() {
-    setOpen(true);
-  }
-  function drawerOnClose() {
-    setOpen(false);
+    props.onControlsOpen?.();
   }
 
   useEffect(() => {
@@ -166,53 +164,39 @@ export const Sandbox = (props: SandboxProps) => {
               <GoabBlock gap="2xs" direction="row" alignment="center">
                 {props.figmaLink && (
                   <>
-                    <a className="no-external-icon"
-                      href={props.figmaLink} target="_blank" rel="noopener noreferrer"
-                      style={{ whiteSpace: "nowrap", display: "flex", gap: "var(--goa-space-xs)" }}>
-                        <GoabIcon type="logo-figma" size="medium" mb="none" fillColor="#006DCC" />
-                    </a>
+                    <GoabTooltip content="View in Figma">
+                      <a className="no-external-icon"
+                        href={props.figmaLink} target="_blank" rel="noopener noreferrer"
+                        style={{ whiteSpace: "nowrap", display: "flex", gap: "var(--goa-space-xs)" }}>
+                          <GoabIcon type="logo-figma" size="medium" mb="none" fillColor="#006DCC" />
+                      </a>
+                    </GoabTooltip>
                   </>
                 )}
               </GoabBlock>
               <GoabBlock gap="2xs" direction="row" alignment="center">
                 {props.githubLink && (
                   <>
-                    <a className="no-external-icon"
-                      href={`https://github.com/GovAlta/ui-components/issues?q=is%3Aissue+is%3Aopen+label%3A%22${encodeURIComponent(
-                        toSentenceCase(props.githubLink)
-                      )}%22`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ whiteSpace: "nowrap", display: "flex", gap: "var(--goa-space-xs)" }}
-                    >
-                      <GoabIcon type="logo-github" size="medium" mb="none" fillColor="#006DCC" />
-                      {issueCount !== null ? ` (${issueCount})` : "(2)"}
-                    </a>
+                    <GoabTooltip content={issueCount !== null ? 'View Github issues (${issueCount})' : 'View Github issues'}>
+                      <a className="no-external-icon"
+                        href={`https://github.com/GovAlta/ui-components/issues?q=is%3Aissue+is%3Aopen+label%3A%22${encodeURIComponent(
+                          toSentenceCase(props.githubLink)
+                        )}%22`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ whiteSpace: "nowrap", display: "flex", gap: "var(--goa-space-xs)" }}
+                      >
+                        <GoabIcon type="logo-github" size="medium" mb="none" fillColor="#006DCC" />
+                        {issueCount !== null ? ` (${issueCount})` : ''}
+                      </a>
+                    </GoabTooltip>
                   </>
                 )}
               </GoabBlock>
             </GoabBlock>
           )}
         </GoabBlock>
-        <GoabDrawer
-          heading="Playground controls"
-          position="right"
-          mt="m"
-          onClose={drawerOnClose}
-          open={open}
-        >
-          {props.formItemProperties && props.formItemProperties.length > 0 && (
-            <SandboxProperties
-              onChange={onChangeFormItemBindings}
-              properties={props.formItemProperties}
-            />
-          )}
-          <br />
-          <SandboxProperties
-            properties={props.properties}
-            onChange={onChange}
-          />
-        </GoabDrawer>
+        {/* Drawer moved to parent page so the trigger can remain here while the drawer is rendered elsewhere. */}
         </>
       )}
     {props.skipRenderDom ? null : <SandboxView fullWidth={props.fullWidth} sandboxProps={props} background={props.background} />}

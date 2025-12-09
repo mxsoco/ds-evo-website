@@ -35,3 +35,5 @@ devenv.local.nix
 
 coverage
 
+AI_INSTRUCTIONS.md
+CLAUDE.md

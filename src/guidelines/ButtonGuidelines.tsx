@@ -73,7 +73,7 @@ export default function ButtonGuidelines() {
             <h2 id="types">Types</h2>
             <GoabContainer mt="none" mb="none" padding="compact" >
                 <div style={{ textAlign: "center" }}>
-                    <img src="./images/button/types-anatomy.png" style={{ width:"100%" }}></img>
+                    <img src="./images/button/types-anatomy.svg" style={{ width:"100%" }}></img>
                 </div>
             </GoabContainer>
             <GoabText size="body-s" mt="s" mb="l">There are 6 types of buttons:</GoabText>
@@ -158,7 +158,7 @@ export default function ButtonGuidelines() {
 
             <h2 id="states">States</h2>
             <GoabContainer mt="none" mb="none" padding="compact" >
-                <img src="./images/button/states-anatomy.png" style={{ width:"100%" }}></img>
+                <img src="./images/button/states-anatomy.svg" style={{ width:"100%" }}></img>
             </GoabContainer>
             <GoabText size="body-s" mt="s" mb="l">There are 4 main states for the buttons:</GoabText>
 
@@ -210,7 +210,7 @@ export default function ButtonGuidelines() {
             <h2 id="compact">Compact buttons</h2>
             <GoabText size="body-s" mt="none" mb="l">A smaller variant of the button to be used when space is limited.</GoabText>
             <GoabContainer mt="none" mb="none" padding="compact" >
-                <img src="./images/button/compact-anatomy.png" style={{ width:"100%" }}></img>
+                <img src="./images/button/compact-anatomy.svg" style={{ width:"100%" }}></img>
             </GoabContainer>
 
             <GoabGrid minChildWidth={minGridWidth} mt="2xl" gap="l">
@@ -242,7 +242,7 @@ export default function ButtonGuidelines() {
             <h2 id="icons">Leading and trailing icons</h2>
             <GoabText size="body-s" mt="none" mb="l">Using an icon in a button visually indicates what action the user can take or expect by clicking the button, making it easier for the user to scan the content of a page. Icons can help to provide a common visual language across language gaps.</GoabText>
             <GoabContainer mt="none" padding="compact" mb="l">
-                <img src="./images/button/trailing-leading-icon-anatomy.png" style={{ width:"100%" }}></img>
+                <img src="./images/button/trailing-leading-icon-anatomy.svg" style={{ width:"100%" }}></img>
             </GoabContainer>
             
             <div className="anatomy-listing">
@@ -360,32 +360,43 @@ export default function ButtonGuidelines() {
 
             <h2 id="related">Related</h2>
 
-            <GoabBlock direction="column" gap="l" width="100%">
+            <GoabGrid gap="l" minChildWidth="320px">
                 <Related
                     title="Icon button"
                     type="components"
                     url="#"
-                />
+                >
+                    <GoabText mb="none">
+                        An icon-only button for common or repetitive actions.
+                    </GoabText>
+                </Related>
                 
                 <Related
                     title="Button group"
                     type="components"
                     url="#"
-                />
-                
+                >
+                    <GoabText mb="none">
+                        Display multiple related actions stacked or in a horizontal row to help with arrangement and spacing.
+                    </GoabText>
+                </Related>
+
                 <Related
                     title="Show a label on an icon only button"
                     type="examples"
                     url="#"
-                />
+                >
+                    <GoabText mb="none">
+                        Reveal a tooltip with a label when the user hovers over an icon-only button.
+                    </GoabText>
+                </Related>
                 
                 <Related
                     title="Back to top button"
                     type="components"
                     githubURL="https://alberta.ca"
                 />
-            </GoabBlock>
-
+            </GoabGrid>
         </div>
     )
 }
