@@ -207,7 +207,7 @@ export function App() {
                       <GoabxWorkSideMenuItem
                           icon="search"
                           label="Search"
-                          type="default"
+                          type="normal"
                           badge="/"
                           url={"/support"}
                           onClick={() => handleNavigate("/support")}

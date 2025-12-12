@@ -30,7 +30,8 @@
 .related-container .related-content h3 {
     font: var(--goa-typography-heading-s);
     margin-top: 0;
-    margin-bottom: var(--goa-space-s);
+    margin-bottom: var(--goa-space-m);
+    display: flex;
 }
 
 .related-container .related-content h3:last-child {
@@ -62,13 +63,9 @@
 }
 
 .related-container > a .related-icon.examples {
-    background: var(--goa-color-extended-sunset-light);
+    background: var(--goa-color-extended-lilac-light);
 }
 
 .related-container > a .related-icon.related-icon-bw {
     background: var(--goa-color-greyscale-150);
-}
-
-.related-container h3 {
-    display: flex;
 }

@@ -4,14 +4,14 @@ import "./RelatedCard.css";
 
 type RelatedCategory = "components" | "examples" | "get-started" | "foundations" | "tokens";
 interface Props {
-  children?: ReactNode;
+  content?: string;
   type: RelatedCategory;
   title: string;
   url?: string;
   githubURL?: string;
 }
 
-export function Related({ type, title, url, githubURL, children }: Props) {
+export function Related({ type, title, url, githubURL, content }: Props) {
 
   return (
     <div className="related-container">
@@ -62,12 +62,14 @@ export function Related({ type, title, url, githubURL, children }: Props) {
           </h3>
 
           {githubURL ? 
-            <GoabText mb="none">
+            <GoabText color="secondary" mb="none">
               Visit the GitHub issue for more information.
             </GoabText>
             : 
             <div className="related-description">
-              {children}
+              <GoabText color="secondary" mb="none">
+                {content}
+              </GoabText>
             </div>
           }
 

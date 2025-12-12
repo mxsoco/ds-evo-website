@@ -95,13 +95,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a primary button for the primary action on the page. For citizen facing applications there should generally only be one primary button on a page."
-                    image="./images/button/button-do-primary.jpg"
+                    image="./images/button/button-do-primary.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use two primary buttons."
-                    image="./images/button/button-dont-primary.jpg"
+                    image="./images/button/button-dont-primary.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -110,13 +110,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use secondary buttons for less important actions on a page. A secondary action is often paired with a primary action."
-                    image="./images/button/button-do-secondary.jpg"
+                    image="./images/button/button-do-secondary.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="do"
                     description="Use tertiary buttons for links that should function like a button, such as “edit” or “cancel” in applications. It is okay to use more than one tertiary button on a page."
-                    image="./images/button/button-do-tertiary.jpg"
+                    image="./images/button/button-do-tertiary.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -125,7 +125,7 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a start button for the main call to action on your services start page. This is the “front door” to your service on Alberta.ca."
-                    image="./images/placeholder-wide.jpg"   
+                    image="./images/do-placeholder-wide.svg"   
                 >
                 </DoDont>
             </GoabGrid>
@@ -134,13 +134,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a destructive button to indicate the final destructive action to the user."
-                    image="./images/button/button-do-destructive.jpg"   
+                    image="./images/button/button-do-destructive.svg"   
                 >
                 </DoDont>
                 <DoDont
                     type="do"
                     description="Use descriptive language in both the content and the button text itself in addition to the destructive button type to inform the user of the resulting action. "
-                    image="./images/button/button-do-destructive-descriptive.jpg"   
+                    image="./images/button/button-do-destructive-descriptive.svg"   
                 >
                 </DoDont>
             </GoabGrid>
@@ -149,7 +149,7 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="dont"
                     description="Avoid using a destructive button on the page when there is a secondary confirmation of the action that follows."
-                    image="./images/placeholder-wide.jpg"   
+                    image="./images/dont-placeholder-wide.svg"   
                 >
                 </DoDont>
             </GoabGrid>
@@ -179,13 +179,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Remove an option if it is unavailable. Show actions that are only relevant and useful to the user at a given time."
-                    image="./images/placeholder.jpg"
+                    image="./images/do-placeholder.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not show a disabled option to the user unless research shows that it makes the interface easier to understand."
-                    image="./images/placeholder.jpg"
+                    image="./images/dont-placeholder.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -194,13 +194,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use error handling to provide clear feedback about any missing fields or input errors when the user tries to submit the form."
-                    image="./images/placeholder.jpg"
+                    image="./images/do-placeholder.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not disable a button on a form when a user has errors. Disabled states can confuse users if they do not know how to enable them."
-                    image="./images/placeholder.jpg"
+                    image="./images/dont-placeholder.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -217,7 +217,7 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use the default button size for most situations."
-                    image="./images/placeholder-wide.jpg"
+                    image="./images/do-placeholder-wide.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -226,13 +226,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use the compact button size when using buttons in compact scenarios such as within a table."
-                    image="./images/button/button-do-compact-table.jpg"
+                    image="./images/button/button-do-compact-table.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use different button sizes in the same area as a way to emphasize hierarchy."
-                    image="./images/button/button-dont-compact-different-sizes.jpg"
+                    image="./images/button/button-dont-compact-different-sizes.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -262,13 +262,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a leading icon for back buttons, search, edit, add, and delete."
-                    image="./images/button/button-do-leading-icon.jpg"
+                    image="./images/button/button-do-leading-icon.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use just the icon without a text label for public facing applications. Be cautious of icon only buttons for internal facing applications."
-                    image="./images/placeholder.jpg"
+                    image="./images/dont-placeholder.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -277,13 +277,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a trailing icon when linking to a location outside of the current application or website or as a navigation button (next, forward)."
-                    image="./images/button/button-do-trailing-icon.jpg"
+                    image="./images/button/button-do-trailing-icon.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use trailing icons to communicate additional information for the button. Use a leading icon instead."
-                    image="./images/placeholder.jpg"
+                    image="./images/dont-placeholder.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -292,13 +292,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use icon buttons for actions on a page with a clear visual association to the action such as “Add item”. See example, {name of example}."
-                    image="./images/button/button-do-leading-action.jpg"
+                    image="./images/button/button-do-leading-action.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use icon buttons for actions that do not have a clear visual association to the intended outcome."
-                    image="./images/button/button-dont-leading-action.jpg"
+                    image="./images/button/button-dont-leading-action.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -311,13 +311,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a leading icon for back buttons, search, edit, add, and delete."
-                    image="./images/button/button-do-positioning.jpg"
+                    image="./images/button/button-do-positioning.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="do"
                     description="Do not use just the icon without a text label for public facing applications. Be cautious of icon only buttons for internal facing applications."
-                    image="./images/button/button-do-positioning-compact.jpg"
+                    image="./images/button/button-do-positioning-compact.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -326,13 +326,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use icon buttons for actions on a page with a clear visual association to the action such as “Add item”. See example, {name of example}."
-                    image="./images/button/button-do-positioning-table.jpg"
+                    image="./images/button/button-do-positioning-table.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use trailing icons to communicate additional information for the button. Use a leading icon instead."
-                    image="./images/button/button-dont-positioning-grouping.jpg"
+                    image="./images/button/button-dont-positioning-grouping.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -345,13 +345,13 @@ export default function ButtonGuidelines() {
                 <DoDont
                     type="do"
                     description="Use a trailing icon when linking to a location outside of the current application or website or as a navigation button (next, forward)."
-                    image="./images/button/button-do-content.jpg"
+                    image="./images/button/button-do-content.svg"
                 >
                 </DoDont>
                 <DoDont
                     type="dont"
                     description="Do not use trailing icons to communicate additional information for the button. Use a leading icon instead."
-                    image="./images/button/button-dont-content.jpg"
+                    image="./images/button/button-dont-content.svg"
                 >
                 </DoDont>
             </GoabGrid>
@@ -365,31 +365,22 @@ export default function ButtonGuidelines() {
                     title="Icon button"
                     type="components"
                     url="#"
-                >
-                    <GoabText mb="none">
-                        An icon-only button for common or repetitive actions.
-                    </GoabText>
-                </Related>
+                    content="An icon-only button for common or repetitive actions."
+                />
                 
                 <Related
                     title="Button group"
                     type="components"
                     url="#"
-                >
-                    <GoabText mb="none">
-                        Display multiple related actions stacked or in a horizontal row to help with arrangement and spacing.
-                    </GoabText>
-                </Related>
+                    content="Display multiple related actions stacked or in a horizontal row to help with arrangement and spacing."
+                />
 
                 <Related
                     title="Show a label on an icon only button"
                     type="examples"
                     url="#"
-                >
-                    <GoabText mb="none">
-                        Reveal a tooltip with a label when the user hovers over an icon-only button.
-                    </GoabText>
-                </Related>
+                    content="Reveal a tooltip with a label when the user hovers over an icon-only button."
+                />
                 
                 <Related
                     title="Back to top button"
