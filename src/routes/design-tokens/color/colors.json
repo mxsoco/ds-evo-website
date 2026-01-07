@@ -1,0 +1,400 @@
+[
+  {
+    "name": "Interactive",
+    "tokens": [
+      {
+        "code": "goa-color-interactive-default",
+        "value": "#0070C4",
+        "figmaColorStyle": "Interactive/Default",
+        "description": "Default color for interactive elements."
+      },
+      {
+        "code": "goa-color-interactive-hover",
+        "value": "#004F84",
+        "figmaColorStyle": "Interactive/Hover",
+        "description": "Hover state for interactive elements."
+      },
+      {
+        "code": "goa-color-interactive-disabled",
+        "value": "#80B7E1",
+        "figmaColorStyle": "Interactive/Disabled",
+        "description": "Disabled state for interactive elements."
+      },
+      {
+        "code": "goa-color-interactive-visited",
+        "value": "#756693",
+        "figmaColorStyle": "Interactive/Visited",
+        "description": "Visited state for links."
+      },
+      {
+        "code": "goa-color-interactive-focus",
+        "value": "#FEBA35",
+        "figmaColorStyle": "Interactive/Focus",
+        "description": "Focus state color for interactive elements."
+      },
+      {
+        "code": "goa-color-interactive-error",
+        "value": "#EC040B",
+        "figmaColorStyle": "Interactive/Error",
+        "description": "Error state for interactive elements."
+      },
+      {
+        "code": "goa-color-interactive-error-hover",
+        "value": "#BA0000",
+        "figmaColorStyle": "Interactive/Error/Hover",
+        "description": "Error state color for interactive elements when hovering."
+      },
+      {
+        "code": "goa-color-interactive-error-disabled",
+        "value": "#F58185",
+        "figmaColorStyle": "Interactive/Error/Disabled",
+        "description": "Error state color for interactive elements when disabled."
+      }
+    ]
+  },
+  {
+    "name": "Text",
+    "tokens": [
+      {
+        "code": "goa-color-text-default",
+        "value": "#333333",
+        "figmaColorStyle": "Text/Default",
+        "description": "Default color for text on a white background such as body text, headings, and subheadings."
+      },
+      {
+        "code": "goa-color-text-secondary",
+        "value": "#666666",
+        "figmaColorStyle": "Text/Secondary",
+        "description": "Default color for secondary text including such as \"optional\" or \"required\" input labels."
+      },
+      {
+        "code": "goa-color-text-light",
+        "value": "#FFFFFF",
+        "figmaColorStyle": "Text/Light",
+        "description": "Use as the text colour on dark backgrounds."
+      },
+      {
+        "code": "goa-color-text-disabled",
+        "value": "#666666",
+        "figmaColorStyle": "Text/Disabled",
+        "description": "Text on a grey background within the disabled text input, text area, combobox, and dropdown."
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "tokens": [
+      {
+        "code": "goa-color-brand-default",
+        "value": "#0081A2",
+        "figmaColorStyle": "Brand/Default",
+        "description": "GOA brand colour."
+      },
+      {
+        "code": "goa-color-brand-dark",
+        "value": "#005072",
+        "figmaColorStyle": "Brand/Dark",
+        "description": "Dark GOA brand colour."
+      },
+      {
+        "code": "goa-color-brand-light",
+        "value": "#C8EEFA",
+        "figmaColorStyle": "Brand/Default",
+        "description": "Light GOA brand colour."
+      }
+    ]
+  },
+  {
+    "name": "Status",
+    "tokens": [
+      {
+        "code": "goa-color-info-default",
+        "value": "#004A8F",
+        "figmaColorStyle": "Status/Info/Default",
+        "description": "Use this color to indicate information to the user."
+      },
+      {
+        "code": "goa-color-info-light",
+        "value": "#AAC9E7",
+        "figmaColorStyle": "Status/Info/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-info-dark",
+        "value": "#003B70",
+        "figmaColorStyle": "Status/Info/Dark",
+        "description": ""
+      },
+      {
+        "code": "goa-color-info-background",
+        "value": "#EFF8FF",
+        "figmaColorStyle": "Status/Info/Background",
+        "description": "Use this color as a background when indicating caution to the user such as within a container or small callout."
+      },
+      {
+        "code": "goa-color-warning-default",
+        "value": "#F9CE2D",
+        "figmaColorStyle": "Status/Warning/Default",
+        "description": "Use this color to indicate a warning to the user."
+      },
+      {
+        "code": "goa-color-warning-light",
+        "value": "#FFEAB6",
+        "figmaColorStyle": "Status/Warning/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-warning-dark",
+        "value": "#BF8D23",
+        "figmaColorStyle": "Status/Warning/Dark",
+        "description": ""
+      },
+      {
+        "code": "goa-color-warning-background",
+        "value": "#FFF6E5",
+        "figmaColorStyle": "Status/Warning/Background",
+        "description": "Use this color as a background when indicating caution to the user such as within a container or small callout."
+      },
+      {
+        "code": "goa-color-emergency-default",
+        "value": "#DA291C",
+        "figmaColorStyle": "Status/Emergency/Default",
+        "description": "Use this color to indicate an emergency to the user."
+      },
+      {
+        "code": "goa-color-emergency-light",
+        "value": "#FBD1CE",
+        "figmaColorStyle": "Status/Emergency/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-emergency-dark",
+        "value": "#A91A10",
+        "figmaColorStyle": "Status/Emergency/Dark",
+        "description": ""
+      },
+      {
+        "code": "goa-color-emergency-background",
+        "value": "#FFF1F2",
+        "figmaColorStyle": "Status/Emergency/Background",
+        "description": "Use this color as a background when indicating emergency to the user such as within a container or small callout."
+      },
+      {
+        "code": "goa-color-success-default",
+        "value": "#006F4C",
+        "figmaColorStyle": "Status/Success/Default",
+        "description": "Use this color to indicate success to the user."
+      },
+      {
+        "code": "goa-color-success-light",
+        "value": "#CCE4DC",
+        "figmaColorStyle": "Status/Success/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-success-dark",
+        "value": "#00563A",
+        "figmaColorStyle": "Status/Success/Dark",
+        "description": ""
+      },
+      {
+        "code": "goa-color-success-background",
+        "value": "#EEF9F3",
+        "figmaColorStyle": "Status/Success/Background",
+        "description": "Use this color as a background when indicating success to the user such as within a container or small callout."
+      },
+      {
+        "code": "goa-color-critical",
+        "value": "#171D23",
+        "figmaColorStyle": "Status/Critical",
+        "description": "Status color for critical events such as the king passing."
+      }
+    ]
+  },
+  {
+    "name": "Greyscale",
+    "tokens": [
+      {
+        "code": "goa-color-greyscale-white",
+        "value": "#FFFFFF",
+        "figmaColorStyle": "Greyscale/White",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-50",
+        "value": "#F8F8F8",
+        "figmaColorStyle": "Greyscale/50",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-100",
+        "value": "#F1F1F1",
+        "figmaColorStyle": "Greyscale/100",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-150",
+        "value": "#E7E7E7",
+        "figmaColorStyle": "Greyscale/150",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-200",
+        "value": "#DCDCDC",
+        "figmaColorStyle": "Greyscale/200",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-300",
+        "value": "#C2C2C2",
+        "figmaColorStyle": "Greyscale/300",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-400",
+        "value": "#ADADAD",
+        "figmaColorStyle": "Greyscale/400",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-500",
+        "value": "#949494",
+        "figmaColorStyle": "Greyscale/500",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-600",
+        "value": "#858585",
+        "figmaColorStyle": "Greyscale/600",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-700",
+        "value": "#666666",
+        "figmaColorStyle": "Greyscale/700",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-800",
+        "value": "#5C5C5C",
+        "figmaColorStyle": "Greyscale/800",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-900",
+        "value": "#474747",
+        "figmaColorStyle": "Greyscale/900",
+        "description": ""
+      },
+      {
+        "code": "goa-color-greyscale-black",
+        "value": "#333333",
+        "figmaColorStyle": "Greyscale/Black",
+        "description": ""
+      }
+
+    ]
+  },
+  {
+    "name": "Extended",
+    "tokens": [
+      {
+        "code": "goa-color-aqua-default",
+        "value": "#7FEBE6",
+        "figmaColorStyle": "Aqua/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-aqua-light",
+        "value": "#DCFBF8",
+        "figmaColorStyle": "Aqua/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-blue-default",
+        "value": "#AAC9E7",
+        "figmaColorStyle": "Blue/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-blue-light",
+        "value": "#DDEFFF",
+        "figmaColorStyle": "Blue/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-green-default",
+        "value": "#BBFCB4",
+        "figmaColorStyle": "Green/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-green-light",
+        "value": "#CCE2D9",
+        "figmaColorStyle": "Green/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-orange-default",
+        "value": "#FFC76D",
+        "figmaColorStyle": "Orange/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-orange-light",
+        "value": "#FCD6C3",
+        "figmaColorStyle": "Orange/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-pink-default",
+        "value": "#FF8FC5",
+        "figmaColorStyle": "Pink/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-pink-light",
+        "value": "#F9E1EB",
+        "figmaColorStyle": "Pink/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-red-default",
+        "value": "#ED948D",
+        "figmaColorStyle": "Red/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-red-light",
+        "value": "#F4CDC6",
+        "figmaColorStyle": "Red/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-violet-default",
+        "value": "#D4C2FF",
+        "figmaColorStyle": "Violet/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-violet-light",
+        "value": "#EFE2FB",
+        "figmaColorStyle": "Violet/Light",
+        "description": ""
+      },
+      {
+        "code": "goa-color-yellow-default",
+        "value": "#FCE796",
+        "figmaColorStyle": "Yellow/Default",
+        "description": ""
+      },
+      {
+        "code": "goa-color-yellow-light",
+        "value": "#FFF7BF",
+        "figmaColorStyle": "Yellow/Light",
+        "description": ""
+      }
+    ]
+  }
+]
+

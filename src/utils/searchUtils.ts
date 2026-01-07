@@ -57,6 +57,22 @@ export const sortData = <T extends Record<string, any>>(
 };
 
 /**
+ * Interface for a sort level configuration
+ */
+export interface SortLevel {
+  key: string;
+  direction: 'asc' | 'desc';
+}
+
+/**
+ * Interface for two-level sort configuration
+ */
+export interface SortConfig {
+  primary: SortLevel | null;
+  secondary: SortLevel | null;
+}
+
+/**
  * Parse event value from CustomEvent or standard React event
  */
 export const getEventValue = (e: CustomEvent | React.ChangeEvent<HTMLInputElement>): string => {

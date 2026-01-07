@@ -1,0 +1,6 @@
+/*Tablet*/
+@media screen and (max-width: 1231px) {
+  .design-tokens dt {
+    color: var(--goa-color-text-secondary);
+  }
+}

@@ -56,6 +56,7 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(getInitialMenuState);
   const [isTablet, setIsTablet] = useState(window.innerWidth < TABLET_BREAKPOINT);
   const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
+  const [visible, setVisibility] = useState<boolean>(false);
 
 
   // Navigate and close menu on mobile
@@ -111,13 +112,19 @@ export function App() {
     }
   }, [menuOpen, isMobile]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setVisibility(true);
+    }, 50);
+  });
+
   console.log('[App] Rendering, menuOpen:', menuOpen, 'isMobile:', isMobile);
 
   return (
     <MenuContext.Provider value={{ menuOpen, setMenuOpen, isMobile }}>
       <PageHeaderProvider>
         <ScrollStateProvider>
-          <div className="app-layout">
+          <div className="app-layout" style={{ opacity: visible ? "1" : "0" }}>
               <GoabxWorkSideMenu
                   heading="Design system"
                   url={"/"}
@@ -179,6 +186,14 @@ export function App() {
                           label="Tokens"
                           url={"/tokens"}
                           onClick={() => handleNavigate("/tokens")}
+                      />
+
+                      
+                      <GoabxWorkSideMenuItem
+                          icon="code-slash"
+                          label="Border width"
+                          url={"/border-width"}
+                          onClick={() => handleNavigate("/border-width")}
                       />
 
                       <GoabxWorkSideMenuItem

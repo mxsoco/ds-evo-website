@@ -1,0 +1,40 @@
+.colors-page div.token-block {
+  height: 22px;
+  width: 24px;
+  border-radius: var(--goa-border-radius-l);
+  margin-top: 4px;
+}
+
+.colors-page a {
+  margin-right: 0.5rem;
+}
+.dd-style {
+  margin-left: 0;
+  margin-bottom: 12px;
+}
+.dd-style:last-of-type {
+  margin-bottom: 0;
+}
+
+.colors-page p.category {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-size: var(--goa-font-size-7);
+  font-weight: var(--goa-font-weight-regular);
+  line-height: var(--goa-line-height-4);
+}
+
+/*Tablet*/
+@media screen and (max-width: 1231px) {
+  .colors-page div.token-block {
+    height: 36px;
+    width: 100%;
+  }
+}
+/*Mobile*/
+@media screen and (max-width: 623px) {
+  .colors-page p.category {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,10 @@
+.component-header {
+  margin-bottom: var(--goa-space-l);
+  margin-top: var(--goa-space-2xl);
+}
+
+.tag-chips {
+  display: flex;
+  gap: var(--goa-button-gap);
+  flex-wrap: wrap;
+}
