@@ -1,11 +1,10 @@
 import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Color.css";
 import COLORS from "./colors.json";
 import React, { useContext } from "react";
-import { DeviceWidthContext } from "@contexts/DeviceWidthContext";
+import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 
 interface Token {
   code: string;
@@ -21,7 +20,7 @@ interface Color {
 
 export default function ColorPage() {
   const colors: Color[] = COLORS;
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -109,9 +108,8 @@ export default function ColorPage() {
   };
 
   return (
-    <ComponentContent contentClassName="colors-page">
-      <GoabText size="heading-xl" mb="none" mt="xl">Color</GoabText>
-      {isDesktop ? renderDesktop() : renderTablet()}
-    </ComponentContent>
+    <div className="colors-page">
+      {isDesktopContent ? renderDesktop() : renderTablet()}
+    </div>
   );
 }

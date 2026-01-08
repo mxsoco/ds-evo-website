@@ -22,6 +22,7 @@ import {
   GoabTable,
   GoabTableSortHeader,
   GoabText,
+  GoabTooltip,
 } from "@abgov/react-components";
 import {
     GoabMenuButtonOnActionDetail
@@ -29,11 +30,11 @@ import {
 import { useDebounce } from "use-debounce";
 import {
   ExampleCard,
-  ExampleListMobileCard,
   ExampleCardProps as RawExampleProps,
   ComponentStatus
 } from "../../components/example-card/ExampleCard";
 import {useTwoLevelSort} from "../../hooks/useTwoLevelSort";
+import {EmptyState} from "../../components/EmptyState";
 
 type ExampleProps = Omit<RawExampleProps, "status"> & {
   status: ComponentStatus;
@@ -254,8 +255,6 @@ export default function ExamplesOverviewPage() {
     return sortedFiltered;
   })();
 
-  // table and menu sort actions use `sortByKey` / `handleTableSort` from the hook
-
   // Get icon for sort menu item (checkmark when selected as primary with no secondary)
   const getSortIcon = (key: string): string | undefined => {
     if (sortConfig.primary?.key === key) return 'checkmark';
@@ -289,94 +288,103 @@ export default function ExamplesOverviewPage() {
 
   return (
     <div>
-      <GoabText size="heading-xl" mt="2xl" mb="m">
-        Examples
-      </GoabText>
-      <GoabText size="body-l" mt="none" mb="xl">
-        Common patterns, pages, tasks, component configurations, flows, and more to use as a starting point when
-        creating government digital services.
-      </GoabText>
-      <GoabFormItem helpText="Search by keyword, category, or name">
-        <GoabInput
-          leadingIcon="search"
-          name="filter"
-          size="compact"
-          type="text"
-          value={filter}
-          width="100%"
-          onChange={({ value }) => setFilter(value || "")}
-        />
-      </GoabFormItem>
+      <GoabBlock direction="column" gap="none" maxWidth="735px" width="100%">
+        <GoabText size="heading-xl" mt="2xl" mb="m">
+          Examples
+        </GoabText>
+        <GoabText size="body-l" mt="none" mb="xl">
+          Common patterns, pages, tasks, component configurations, flows, and more to use as a starting point when
+          creating government digital services.
+        </GoabText>
+        <GoabFormItem helpText="Search by keyword, category, or name">
+          <GoabInput
+            leadingIcon="search"
+            name="filter"
+            size="compact"
+            type="text"
+            value={filter}
+            width="100%"
+            onChange={({ value }) => setFilter(value || "")}
+          />
+        </GoabFormItem>
+      </GoabBlock>
 
       <GoabBlock mt="2xl" gap="s">
+
         <GoabButton leadingIcon="filter" type="secondary" size="compact" mb="xl" onClick={() => setShowFilters((prev) => !prev)}>
           Filters
         </GoabButton>
-        <GoabTabs initialTab={1} onChange={handleTabChange} stackOnMobile={false} variant="segmented">
-          <GoabTab heading={
-            <>
-              <GoabIcon type="grid" size="small" fillColor="var(--goa-color-text-secondary)" ariaLabel="Cards"/> 
-            </>
-          }/>
-          <GoabTab heading={
-            <>
-              <GoabIcon type="list" size="small" fillColor="var(--goa-color-text-secondary)" ariaLabel="List"/>
-            </>
-          }/>
-        </GoabTabs>
-      </GoabBlock>
 
-      {/*
-      <GoabMenuButton
-        size="compact"
-        type="tertiary"
-        text={"Sort"}
-        onAction={(e: GoabMenuButtonOnActionDetail) => handleSortAction(e.action)}
-      >
-        <GoabMenuAction
-          text={`Status${getSortIndicator('status')}`}
-          action="sort-status"
-          icon={getSortIcon('status')}
-        />
-        <GoabMenuAction
-          text={`Name${getSortIndicator('name')}`}
-          action="sort-name"
-          icon={getSortIcon('name')}
-        />
-        {sortConfig.primary && (
-          <GoabMenuAction
-            text="Clear sort"
-            action="clear-sort"
-            variant="destructive"
-          />
+        {!isMobile && (
+          <GoabTabs initialTab={1} onChange={handleTabChange} stackOnMobile={false} variant="segmented">
+            <GoabTab heading={
+              <>
+              <GoabTooltip content="Cards" position="bottom">
+                <GoabIcon type="grid" size="small" fillColor="var(--goa-color-text-secondary)" ariaLabel="Cards"/>
+              </GoabTooltip> 
+              </>
+            }/>
+            <GoabTab heading={
+              <>
+              <GoabTooltip content="List">
+                <GoabIcon type="list" size="small" fillColor="var(--goa-color-text-secondary)" ariaLabel="List"/>
+              </GoabTooltip>
+              </>
+            }/>
+          </GoabTabs>
         )}
-      </GoabMenuButton>
-      */}
+
+        {isMobile && (
+          <GoabMenuButton
+            size="compact"
+            type="tertiary"
+            text={"Sort"}
+            onAction={(e: GoabMenuButtonOnActionDetail) => handleSortAction(e.action)}
+          >
+            <GoabMenuAction
+              text={`Status${getSortIndicator('status')}`}
+              action="sort-status"
+              icon={getSortIcon('status')}
+            />
+            <GoabMenuAction
+              text={`Name${getSortIndicator('name')}`}
+              action="sort-name"
+              icon={getSortIcon('name')}
+            />
+            {sortConfig.primary && (
+              <GoabMenuAction
+                text="Clear sort"
+                action="clear-sort"
+                variant="destructive"
+              />
+            )}
+          </GoabMenuButton>
+        )}
+
+      </GoabBlock>
 
       {filterChips.length > 0 && (
         <div className="chips-container">
-          <GoabBlock mt="none" mb="xl" gap="s" alignment={"center"}>
-            <GoabIcon type="filter-lines" size="small" fillColor="var(--goa-color-text-secondary)" mr="2xs"/>
-            {/* Filter chips */}
-            {filterChips.map((chip) => (
-                <GoabFilterChip
-                    key={`${chip.category}-${chip.value}`}
-                    content={chip.label}
-                    onClick={() => removeAppliedFilter(chip.category, chip.value)}
-                />
-            ))}
-            <GoabLink color="interactive" size="small">
-              <a
-                  href="#"
-                  onClick={(e) => {
-                      e.preventDefault();
-                      resetFilters();
-                  }}
-              >
-                  Clear all
-              </a>
-            </GoabLink>
-          </GoabBlock>
+          <GoabIcon type="filter-lines" size="small" fillColor="var(--goa-color-text-secondary)" mr="2xs"/>
+          {/* Filter chips */}
+          {filterChips.map((chip) => (
+              <GoabFilterChip
+                  key={`${chip.category}-${chip.value}`}
+                  content={chip.label}
+                  onClick={() => removeAppliedFilter(chip.category, chip.value)}
+              />
+          ))}
+          <GoabLink color="interactive" size="small">
+            <a
+                href="#"
+                onClick={(e) => {
+                    e.preventDefault();
+                    resetFilters();
+                }}
+            >
+                Clear all
+            </a>
+          </GoabLink>
         </div>
       )}
 
@@ -384,32 +392,25 @@ export default function ExamplesOverviewPage() {
       
       <div
         style={{
-          display: activeTab === 'Cards' ? 'grid' : 'none',
-          gridTemplateColumns: "repeat(auto-fill, minmax(15rem, 1fr))",
+          display: activeTab === 'Cards' || isMobile ? 'grid' : 'none',
+          gridTemplateColumns: (filteredCards.length != 0 || cards.length === 0) && "repeat(auto-fill, minmax(15rem, 1fr))",
           gap: "var(--goa-space-xl)",
           width: "100%"
         }}
       >
         {cards.length === 0 ? (
           <>
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
-            <GoabSkeleton type="card" size="3" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
+            <GoabSkeleton type="card" size="4" />
           </>
         ) : filteredCards.length === 0 ? (
-          <GoabBlock direction={"row"} mt={"2xl"} mb={"3xl"}>
-            <GoabText size="body-l">
-              <div style={{ whiteSpace: "nowrap" }}>
-                No matching examples found.{" "}
-              </div>
-          </GoabText>
-            <GoabButton type="tertiary" onClick={resetFilters} ml={"s"}>Reset filters</GoabButton>
-          </GoabBlock>
+          <EmptyState onButtonClick={resetFilters} />
         ) : (
           filteredCards.map((card) => (
             <ExampleCard
@@ -429,13 +430,14 @@ export default function ExamplesOverviewPage() {
         )}
       </div>
 
-      {/* List view */} 
+      {/* List view */
 
-      <div
-        style={{
-          display: activeTab === 'List' ? 'block' : 'none',
-        }}
-      >
+      !isMobile && ( 
+        <div
+          style={{
+            display: activeTab === 'List' ? 'block' : 'none',
+          }}
+        >
           <GoabDataGrid keyboardNav="table" keyboardIconPosition="right">
             <GoabTable width="100%" onSort={handleTableSort}>
               <thead>
@@ -515,12 +517,7 @@ export default function ExamplesOverviewPage() {
               ) : filteredCards.length === 0 ? (
                 <tr>
                   <td colSpan={4}>
-                    <GoabBlock direction={"row"} mt={"2xl"} mb={"2xl"}>
-                      <GoabText size="body-l">
-                        No matching examples found.{" "}
-                      </GoabText>
-                      <GoabButton type="tertiary" onClick={resetFilters} ml={"s"}>Reset filters</GoabButton>
-                    </GoabBlock>
+                    <EmptyState onButtonClick={resetFilters} />
                   </td>
                 </tr>
               ) : (
@@ -600,51 +597,8 @@ export default function ExamplesOverviewPage() {
               </tbody>
             </GoabTable>
           </GoabDataGrid>
-
-        {/*!isMobile ? (
-          
-        ) : (
-          <div className="">
-            {/*cards.length === 0 ? (
-              <>
-                <tr>
-                  <td colSpan={1}><GoabSkeleton type="title" size="3" /></td>
-                  <td colSpan={1}><GoabSkeleton type="title" size="3" /></td>
-                  <td colSpan={1}><GoabSkeleton type="title" size="3" /></td>
-                  <td colSpan={1}><GoabSkeleton type="title" size="3" /></td>
-                </tr>
-              </>
-            ) : filteredCards.length === 0 ? (
-              <tr>
-                <td colSpan={4}>
-                  <GoabBlock direction={"row"} mt={"2xl"} mb={"2xl"}>
-                    <GoabText size="body-l">
-                      No matching examples found.{" "}
-                    </GoabText>
-                    <GoabButton type="tertiary" onClick={resetFilters} ml={"s"}>Reset filters</GoabButton>
-                  </GoabBlock>
-                </td>
-              </tr>
-            ) : (
-              filteredCards.map((card) => (
-                <ExampleListMobileCard
-                  key={card.name}
-                  name={card.name}
-                  tags={card.tags}
-                  description={card.description}
-                  status={card.status}
-                  openIssues={/*issueCounts[card.name]}
-                  isNew={card.isNew}
-                  designComponentFigmaUrl={card.designComponentFigmaUrl}
-                  designContributionFigmaUrl={card.designContributionFigmaUrl}
-                  githubLink={card.url}
-                />
-              ))
-            )}
-          </div>
-        )*/}
-      </div>
-
+        </div>
+      )}
       <GoabDrawer
         heading="Filters"
         position="right"

@@ -6,10 +6,10 @@ import {
   ANGULAR_VERSIONS, getVersionedUrlPath, Language, LanguageVersion,
   VERSIONED_ANGULAR_URL_SEGMENT,
   VERSIONED_REACT_URL_SEGMENT, REACT_VERSIONS
-} from "./version-language-constants.ts";
+} from "./version-language-constants";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect } from "react";
-import { LanguageVersionContext } from "@contexts/LanguageVersionContext.tsx";
+import { LanguageVersionContext } from "../../contexts/LanguageVersionContext";
 import "./version-language-switcher.css";
 
 export const VersionLanguageSwitcher = () => {

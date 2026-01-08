@@ -1,12 +1,11 @@
-import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Spacing.css";
 import SPACING_TOKENS from "./spacing.json";
 import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { useContext } from "react";
 import { getCssVarValue } from "../../../utils/styling";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 
 interface Token {
   tokenName: string;
@@ -17,7 +16,7 @@ interface Token {
 
 export default function SpacingPage() {
   const tokens: Token[] = SPACING_TOKENS;
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -89,9 +88,8 @@ export default function SpacingPage() {
   };
 
   return (
-    <ComponentContent contentClassName="spacing-page">
-      <GoabText size="heading-xl" mb="m" mt="xl">Spacing</GoabText>
-      {isDesktop ? renderDesktop() : renderMobile()}
-    </ComponentContent>
+    <div className="spacing-page">
+      {isDesktopContent ? renderDesktop() : renderMobile()}
+    </div>
   );
 }

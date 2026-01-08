@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { GoabIconButton, GoabTooltip } from "@abgov/react-components";
 
-import { useVersionUpdateNotification } from "@components/version-language-switcher/VersionUpdateNotificationContext";
-import { useSiteWideNotification } from "@contexts/SiteWideNotificationContext";
-import { LanguageVersionContext } from "@contexts/LanguageVersionContext";
+import { useVersionUpdateNotification } from "../components/version-language-switcher/VersionUpdateNotificationContext";
+import { useSiteWideNotification } from "../contexts/SiteWideNotificationContext";
+import { LanguageVersionContext } from "../contexts/LanguageVersionContext";
 
 export function HelpButton() {
   const { reset: resetVersion } = useVersionUpdateNotification();

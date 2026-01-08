@@ -1,11 +1,10 @@
-import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Opacity.css";
 import { getTokenGroups } from "../getTokenGroups";
 import { useContext } from "react";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 
 interface Token {
   tokenName: string;
@@ -26,7 +25,7 @@ export default function OpacityPage() {
       figmaUsage: "Fill: Opacity/Background/Loading",
     },
   ];
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -93,9 +92,8 @@ export default function OpacityPage() {
   };
 
   return (
-    <ComponentContent contentClassName="opacity-page">
-      <GoabText size="heading-xl" mb="m" mt="xl">Opacity</GoabText>
-      {isDesktop ? renderDesktop() : renderMobile()}
-    </ComponentContent>
+    <div className="opacity-page">
+      {isDesktopContent ? renderDesktop() : renderMobile()}
+    </div>
   );
 }

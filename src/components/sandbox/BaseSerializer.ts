@@ -1,5 +1,5 @@
 import { ComponentBinding } from "./ComponentBinding";
-import { LanguageVersion } from "@components/version-language-switcher/version-language-constants.ts";
+import { LanguageVersion } from "../components/version-language-switcher/version-language-constants.ts";
 
 export interface Serializer {
   stringToProp: (name: string, item: string) => string;

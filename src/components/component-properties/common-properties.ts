@@ -1,4 +1,4 @@
-import { ComponentProperty } from "@components/component-properties/ComponentProperties.tsx";
+import { ComponentProperty } from "../../components/component-properties/ComponentProperties";
 
 export const LegacyMarginProperty: ComponentProperty =  {
   name: "mt,mr,mb,ml",

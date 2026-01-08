@@ -1,10 +1,9 @@
-import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Shadow.css";
 import { getTokenGroups } from "../getTokenGroups";
 import { useContext } from "react";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 
 interface Token {
   tokenName: string;
@@ -56,7 +55,7 @@ export default function ShadowPage() {
     },
 
   ];
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -109,9 +108,8 @@ export default function ShadowPage() {
   };
 
   return (
-    <ComponentContent contentClassName="shadow-page">
-      <GoabText size="heading-xl" mb="m" mt="xl">Shadow</GoabText>
-      {isDesktop ? renderDesktop() : renderMobile()}
-    </ComponentContent>
+    <div className="shadow-page">
+      {isDesktopContent ? renderDesktop() : renderMobile()}
+    </div>
   );
 }

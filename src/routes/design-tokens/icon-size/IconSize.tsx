@@ -1,11 +1,10 @@
-import { GoabContainer, GoabGrid, GoabIcon, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { GoabContainer, GoabGrid, GoabIcon, GoabTable } from "@abgov/react-components";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./IconSize.css";
 import { getTokenGroups } from "../getTokenGroups";
 import { Token } from "../token";
 import { useContext } from "react";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 import { GoabIconSize } from "@abgov/ui-components-common";
 
 interface IconSizeToken extends Token {
@@ -79,7 +78,7 @@ export default function IconSizePage() {
     },
 
   ];
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -137,9 +136,8 @@ export default function IconSizePage() {
   };
 
   return (
-    <ComponentContent contentClassName="icon-size">
-      <GoabText size="heading-xl" mb="m" mt="xl">Icon size</GoabText>
-      {isDesktop ? renderDesktop() : renderMobile()}
-    </ComponentContent>
+    <div className="icon-size">
+      {isDesktopContent ? renderDesktop() : renderMobile()}
+    </div>
   );
 }

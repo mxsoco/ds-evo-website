@@ -95,22 +95,20 @@ export default function BorderRadiusPage() {
       <GoabGrid minChildWidth="22rem" gap="l">
         {getTokenGroups(tokens).map(group =>
           group.map((token, idx) => (
-            <>
-              <GoabContainer key={idx}>
-                <div
-                  className="token-block"
-                  style={{
-                    borderRadius: getCssVarValue(`--${token.tokenName}`),
-                  }}
-                />
-                <TokenSnippet code={token.tokenName} className="mobile-token-view" />
-                <dl>
-                  <dt>rem</dt> <dd  className="dd-style">{token.rem}</dd>
-                  <dt>px</dt> <dd  className="dd-style">{token.px}</dd>
-                  <dt>Figma variable</dt> <dd  className="dd-style">{token.figmaUsage}</dd>
-                </dl>
-              </GoabContainer>
-            </>
+            <GoabContainer key={idx}>
+              <div
+                className="token-block"
+                style={{
+                  borderRadius: getCssVarValue(`--${token.tokenName}`),
+                }}
+              />
+              <TokenSnippet code={token.tokenName} className="mobile-token-view" />
+              <dl>
+                <dt>rem</dt> <dd  className="dd-style">{token.rem}</dd>
+                <dt>px</dt> <dd  className="dd-style">{token.px}</dd>
+                <dt>Figma variable</dt> <dd  className="dd-style">{token.figmaUsage}</dd>
+              </dl>
+            </GoabContainer>
           ))
         )}
       </GoabGrid>

@@ -16,7 +16,7 @@ export default function DesignTokensOverviewPage() {
       <p>
         These design tokens are used in place of hard-coded values in order to ensure flexibility
         and unity across all digital products. They are shared references used together by design
-        and development, packaged in a format that’s consumable and easily distributed across all
+        and development, packaged in a format that's consumable and easily distributed across all
         platforms.
       </p>
       <p>

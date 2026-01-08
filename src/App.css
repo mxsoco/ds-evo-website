@@ -190,6 +190,19 @@ goa-tab .component-content--container {
   height: 1px;
 }
 
+/* ============================================================================
+    CHIPS CONTAINER
+   ============================================================================ */
+
+.chips-container {
+  display: flex;
+  gap: var(--goa-space-s);
+  margin-bottom: var(--goa-space-xl);
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
 @media screen and (max-width: 623px) {
 
     .app-layout {

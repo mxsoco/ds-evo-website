@@ -1,6 +1,6 @@
 .goa-code-snippet {
   border: 1px solid var(--goa-color-greyscale-200);
-  border-radius: 4px;
+  border-radius: 12px;
   margin-top: var(--goa-space-m);
   overflow: hidden;
   max-height: 20rem;

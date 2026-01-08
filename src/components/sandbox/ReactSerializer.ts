@@ -1,6 +1,6 @@
 import { ComponentBinding } from "./ComponentBinding";
 import { BaseSerializer, Serializer, SerializerState } from "./BaseSerializer";
-import { LanguageVersion } from "@components/version-language-switcher/version-language-constants.ts";
+import { LanguageVersion } from "../components/version-language-switcher/version-language-constants.ts";
 
 export class ReactSerializer extends BaseSerializer implements Serializer {
   public isRoot = false;

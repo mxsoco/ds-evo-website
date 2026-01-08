@@ -1,6 +1,6 @@
 import { GoabNotification } from "@abgov/react-components";
 import { useLocation } from "react-router-dom";
-import { useSiteWideNotification } from "@contexts/SiteWideNotificationContext";
+import { useSiteWideNotification } from "../contexts/SiteWideNotificationContext";
 import { MAX_CONTENT_WIDTH } from "../../global-constants.ts";
 
 export function SiteWideNotification() {

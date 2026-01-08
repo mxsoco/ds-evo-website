@@ -9,16 +9,14 @@ import { HomePage } from './routes/home';
 import { ComponentsRouter } from "./versioned-router";
 
 // Tokens Page
-import DesignTokensOverviewPage from "./routes/design-tokens/index";
-import DesignTokenLayout from "./routes/design-tokens/DesignTokenLayout";
-import BorderWidthPage from "./routes/design-tokens/border-width/BorderWidth";
+import DesignTokensOverviewPage from "./routes/design-tokens/DesignTokens";
 
 // Examples Pages
-import ExamplePageTemplate from "./routes/examples/ExamplePageTemplate";
 import ComponentNotFound from "./routes/not-found/NotFound";
-import { LanguageVersionContext, LanguageVersionProvider } from "./contexts/LanguageVersionContext";
+import ExamplePageTemplate from "./routes/examples/ExamplePageTemplate";
 import ExamplesLayout from "./routes/examples/ExamplesLayout";
 import ExamplesOverviewPage from "./routes/examples/ExamplesOverview";
+import { LanguageVersionContext, LanguageVersionProvider } from "./contexts/LanguageVersionContext";
 
 // Get Started
 import GetStartedOverviewPage from "./routes/get-started/GetStartedOverview";
@@ -48,10 +46,7 @@ root.render(
                         <Route index element={<GetStartedOverviewPage />} />
                       </Route>
 
-                      <Route path="tokens" element={<DesignTokenLayout />} errorElement={<ComponentNotFound />}>
-                        <Route index element={<DesignTokensOverviewPage />}/>
-                        <Route path={"border-width"} element={<BorderWidthPage/>}/>
-                      </Route>
+                      <Route path="tokens" element={<DesignTokensOverviewPage />} errorElement={<ComponentNotFound />}/>
                       
                       {/* Component Pages*/}
                       <Route path="/button" element={<ComponentsRouter /> } />
@@ -68,5 +63,5 @@ root.render(
           </NotificationProvider>
       </Router>
     </ErrorBoundary>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

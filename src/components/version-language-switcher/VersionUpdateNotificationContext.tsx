@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import type { LanguageVersion } from "@components/version-language-switcher/version-language-constants";
+import type { LanguageVersion } from "../components/version-language-switcher/version-language-constants";
 
 interface VersionUpdateNotificationContextType {
   isDismissed: boolean;

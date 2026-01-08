@@ -239,7 +239,7 @@ export const CompactButtonsInATable = () => {
                   lastName: string;
                 }
 
-                @Component({
+                ../Component({
                   selector: "abgov-paginate",
                   templateUrl: "./paginate.html",
                 })
@@ -300,7 +300,7 @@ export const CompactButtonsInATable = () => {
                   lastName: string;
                 }
 
-                @Component({
+                ../Component({
                   selector: "abgov-paginate",
                   templateUrl: "./paginate.html",
                 })

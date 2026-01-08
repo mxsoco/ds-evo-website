@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { GoabNotification } from "@abgov/react-components";
 import { MAX_CONTENT_WIDTH } from "../../global-constants";
 import { useVersionUpdateNotification } from "./VersionUpdateNotificationContext";
-import type { LanguageVersion } from "@components/version-language-switcher/version-language-constants";
+import type { LanguageVersion } from "../components/version-language-switcher/version-language-constants";
 
 interface VersionUpdateNotificationProps {
   version: LanguageVersion;

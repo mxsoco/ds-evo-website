@@ -1,4 +1,4 @@
-import { GoabPageBlock } from "@abgov/react-components";
+import { GoabDivider, GoabPageBlock } from "@abgov/react-components";
 import {Outlet} from "react-router-dom";
 import {SupportInfo} from "../../components/support-info/SupportInfo";
 import { LanguageVersionContext } from "../../contexts/LanguageVersionContext";
@@ -12,6 +12,7 @@ export default function ExamplesLayout() {
   return (
       <GoabPageBlock width="1200px">
         <Outlet />
+        <GoabDivider mt="3xl"></GoabDivider>
         <SupportInfo />
       </GoabPageBlock>
   );

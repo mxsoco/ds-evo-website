@@ -1,13 +1,13 @@
-import { SandboxHeader } from "@components/sandbox/sandbox-header/sandboxHeader.tsx";
-import AskAUserOneQuestionAtATime from "@examples/ask-a-user-one-question-at-a-time.tsx";
+import { SandboxHeader } from "../../components/sandbox/sandbox-header/sandboxHeader";
+import AskAUserOneQuestionAtATime from "../../examples/ask-a-user-one-question-at-a-time";
 import GiveBackgroundInformationBeforeAskingAQuestion
-      from "../give-background-information-before-asking-a-question.tsx";
-import ShowMoreInformationToHelpAnswerAQuestion from "../show-more-information-to-help-answer-a-question.tsx";
-import ShowASectionTitleOnAQuestionPage from "../show-a-section-title-on-a-question-page.tsx";
-import ShowASimpleProgressIndicatorOnAQuestionPage from "../show-a-simple-progress-indicator-on-a-question-page.tsx";
-import GroupRelatedQuestionsTogetherOnAQuestionPage from "../group-related-questions-together-on-a-question-page.tsx";
+      from "../give-background-information-before-asking-a-question";
+import ShowMoreInformationToHelpAnswerAQuestion from "../show-more-information-to-help-answer-a-question";
+import ShowASectionTitleOnAQuestionPage from "../show-a-section-title-on-a-question-page";
+import ShowASimpleProgressIndicatorOnAQuestionPage from "../show-a-simple-progress-indicator-on-a-question-page";
+import GroupRelatedQuestionsTogetherOnAQuestionPage from "../group-related-questions-together-on-a-question-page";
 import ShowASimpleProgressIndicatorOnAQuestionPageWithMultipleQuestions
-      from "../show-a-simple-progress-indicator-on-a-question-page-with-multiple-questions.tsx";
+      from "../show-a-simple-progress-indicator-on-a-question-page-with-multiple-questions";
 
 export default function QuestionPageExamples() {
   return (

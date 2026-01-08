@@ -1,12 +1,11 @@
-import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
-import { TokenSnippet } from "@components/token-snippet/TokenSnippet";
+import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
+import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import TYPO_TOKENS from "./typography.json";
 import { getTokenGroups } from "../getTokenGroups";
 import { Token } from "../token";
 import { useContext } from "react";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
-import { ComponentContent } from "@components/component-content/ComponentContent";
 
 interface TypographyToken extends Token {
   figmaTypeStyle: string;
@@ -18,7 +17,7 @@ interface TypographyToken extends Token {
 
 export default function TypographyPage() {
   const tokens: TypographyToken[] = TYPO_TOKENS;
-  const { isDesktop } = useContext(DeviceWidthContext);
+  const { isDesktopContent } = useContext(DeviceWidthContext);
 
   const renderDesktop = () => {
     return (
@@ -79,11 +78,10 @@ export default function TypographyPage() {
   };
 
   return (
-    <ComponentContent>
+    <div>
       <div style={{ whiteSpace: "normal" }}>
-        <GoabText size="heading-xl" mb="m" mt="xl">Typography</GoabText>
-        {isDesktop ? renderDesktop() : renderMobile()}
+        {isDesktopContent ? renderDesktop() : renderMobile()}
       </div>
-    </ComponentContent>
+    </div>
   );
 }

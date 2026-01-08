@@ -188,14 +188,6 @@ export function App() {
                           onClick={() => handleNavigate("/tokens")}
                       />
 
-                      
-                      <GoabxWorkSideMenuItem
-                          icon="code-slash"
-                          label="Border width"
-                          url={"/border-width"}
-                          onClick={() => handleNavigate("/border-width")}
-                      />
-
                       <GoabxWorkSideMenuItem
                           icon="people"
                           label="Playbook"

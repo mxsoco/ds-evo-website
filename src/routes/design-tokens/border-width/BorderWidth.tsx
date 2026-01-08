@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-components";
+import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
 import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./BorderWidth.css";
 import { Token } from "../token";
@@ -117,7 +117,6 @@ export default function BorderWidthPage() {
 
   return (
     <div className="border-width-page">
-      <GoabText size="heading-xl" mb="m" mt="xl">Border Width</GoabText>
       {isDesktopContent ? renderDesktop() : renderMobile()}
     </div>
   );
