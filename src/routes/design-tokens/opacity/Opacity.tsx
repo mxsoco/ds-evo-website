@@ -12,7 +12,7 @@ interface Token {
   figmaUsage: string;
 }
 
-export default function OpacityPage() {
+export default function OpacityPage({ filter }: { filter?: string } = {}) {
   const tokens: Token[] = [
     {
       tokenName: "goa-opacity-background-modal",
@@ -26,6 +26,15 @@ export default function OpacityPage() {
     },
   ];
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  const search = (filter || "").toLowerCase();
+  const filteredTokens = tokens.filter((token) => {
+    const hay = `${token.tokenName} ${token.percentage} ${token.figmaUsage}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (filteredTokens.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
@@ -39,7 +48,7 @@ export default function OpacityPage() {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <tr key={index}>
               <td>
                 <div className="opacity-thumbnail" style={{ display: "flex" }}>
@@ -67,7 +76,7 @@ export default function OpacityPage() {
   const renderMobile = () => {
     return (
       <GoabGrid minChildWidth="22rem" gap="l">
-        {getTokenGroups(tokens).map(group =>
+        {getTokenGroups(filteredTokens).map(group =>
           group.map((token: Token, idx: number) => (
             <GoabContainer key={idx}>
               <div style={{ display: "flex" }}>

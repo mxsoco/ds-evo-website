@@ -3,6 +3,7 @@ import {
   GoabBlock,
   GoabButton,
   GoabCallout,
+  GoabDivider,
   GoabTabs,
   GoabTab,
   GoabFormItem,
@@ -10,7 +11,7 @@ import {
   GoabInput,
   GoabText
 } from "@abgov/react-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";import { useDebounce } from "use-debounce";
 import BorderRadiusPage from "./border-radius/BorderRadius";
 import BorderWidthPage from "./border-width/BorderWidth";
 import ColorPage from "./color/Color";
@@ -24,9 +25,11 @@ import { DesignTokensLanguageContext } from "../../contexts/DesignTokensLanguage
 import "./DesignToken.css";
 
 export default function DesignTokensOverviewPage() {
+  const [filter, setFilter] = useState<string>("");
+  const [debouncedFilter] = useDebounce(filter, 300);
   const [tokenLanguage, setLanguage] = useState("");
   const [expandedAll, setExpandedAll] = useState<boolean>(false);
-
+  
   const [expandedList, setExpandedList] = useState<number[]>([]);
     useEffect(() => {
     setExpandedAll(expandedList.length === 4);
@@ -48,6 +51,10 @@ export default function DesignTokensOverviewPage() {
       return prev.filter((item) => item !== order);
     });
   }
+  
+  const resetFilters = () => {
+    setFilter("");
+  };
 
   useEffect(() => {
     const lang = localStorage.getItem("goa-docs-design-tokens-lang");
@@ -82,9 +89,9 @@ export default function DesignTokensOverviewPage() {
                 name="filter"
                 size="compact"
                 type="text"
-                /*value={filter}*/
+                value={filter}
                 width="100%"
-                /*onChange={({ value }) => setFilter(value || "")}*/
+                onChange={({ value }) => setFilter(value || "")}
               />
             </GoabFormItem>
           </GoabBlock>
@@ -105,29 +112,31 @@ export default function DesignTokensOverviewPage() {
           </GoabButton>
 
           <GoabAccordion open={expandedList.includes(1)} heading="Border radius" onChange={(open) => updateAccordion(1, open)}>
-              {BorderRadiusPage()}
+              <BorderRadiusPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(2)} heading="Border width" onChange={(open) => updateAccordion(2, open)}>
-              {BorderWidthPage()}
+              <BorderWidthPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(3)} heading="Color" onChange={(open) => updateAccordion(3, open)}>
-              {ColorPage()}
+              <ColorPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(4)} heading="Icon size" onChange={(open) => updateAccordion(4, open)}>
-              {IconSizePage()}
+              <IconSizePage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(5)} heading="Opacity" onChange={(open) => updateAccordion(5, open)}>
-              {OpacityPage()}
+              <OpacityPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(6)} heading="Shadow" onChange={(open) => updateAccordion(6, open)}>
-              {ShadowPage()}
+              <ShadowPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(7)} heading="Spacing" onChange={(open) => updateAccordion(7, open)}>
-              {SpacingPage()}
+              <SpacingPage filter={debouncedFilter} />
           </GoabAccordion>
           <GoabAccordion open={expandedList.includes(8)} heading="Typography" onChange={(open) => updateAccordion(8, open)}>
-              {TypographyPage()}
+              <TypographyPage filter={debouncedFilter} />
           </GoabAccordion>
+
+          <GoabDivider mt="3xl"></GoabDivider>
 
           <SupportInfo />
         </GoabPageBlock>

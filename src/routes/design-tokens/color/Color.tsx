@@ -18,14 +18,26 @@ interface Color {
   tokens: Token[];
 }
 
-export default function ColorPage() {
+export default function ColorPage({ filter }: { filter?: string } = {}) {
   const colors: Color[] = COLORS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  
+  const search = (filter || "").toLowerCase();
+  const filteredColors = colors.map(color => ({...color, tokens: color.tokens.filter(token => {
+        const hay = `${token.code} ${token.value} ${token.figmaColorStyle} ${token.description}`.toLowerCase();
+        return hay.includes(search);
+      })
+    }))
+    .filter(color => color.tokens.length > 0);
+
+  if (filteredColors.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
       <>
-        {colors.map((color, index) => (
+        {filteredColors.map((color, index) => (
           <div key={index} className="color-section">
               <GoabText size="heading-m" mt="2xl" mb="m"> {color.name} </GoabText>
               <GoabTable width="100%">
@@ -77,7 +89,7 @@ export default function ColorPage() {
   const renderTablet = () => {
     return (
       <section>
-        {colors.map((color, index) => (
+        {filteredColors.map((color, index) => (
           <React.Fragment key={index}>
             <h3 id={color.name.toLowerCase()} className="category">
               {color.name}

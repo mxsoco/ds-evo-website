@@ -11,7 +11,7 @@ interface IconSizeToken extends Token {
   size: GoabIconSize | string;
 }
 
-export default function IconSizePage() {
+export default function IconSizePage({ filter }: { filter?: string } = {}) {
   const tokens: IconSizeToken[] = [
     {
       tokenName: "goa-icon-size-1",
@@ -79,6 +79,15 @@ export default function IconSizePage() {
 
   ];
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  const search = (filter || "").toLowerCase();
+  const filteredTokens = tokens.filter((token) => {
+    const hay = `${token.tokenName} ${token.figmaUsage} ${token.rem} ${token.px} ${token.size}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (filteredTokens.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
@@ -93,7 +102,7 @@ export default function IconSizePage() {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <tr key={index}>
               <td>
                 <div className={`icon ${token.tokenName}`}>
@@ -116,7 +125,7 @@ export default function IconSizePage() {
   const renderMobile = () => {
     return (
       <GoabGrid minChildWidth="22rem" gap="l">
-        {getTokenGroups(tokens).map(group =>
+        {getTokenGroups(filteredTokens).map(group =>
           group.map((token: IconSizeToken, idx: number) => (
             <GoabContainer key={idx}>
               <div className={`icon ${token.tokenName}`}>

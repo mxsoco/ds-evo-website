@@ -71,7 +71,7 @@ export function ExampleCard(props: ExampleCardProps) {
   const { language } = useContext(LanguageVersionContext);
   return (
 
-    <div className="card">
+    <div className="card example">
       {props.status === "Available" ? (
         <Link to={isRelativeUrl(props.exampleUrl) ? props.exampleUrl! : toKebabCase(props.name)}
               tabIndex={-1}>

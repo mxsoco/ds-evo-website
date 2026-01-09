@@ -10,6 +10,7 @@ import { ExampleHeader } from "../../components/example-header/ExampleHeader";
 export default function ExamplePageTemplate() {
   const { slug } = useParams(); // assumes route like /examples/:slug
   const [example, setExample] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   // Dynamic import based on slug
   const ExampleComponent = useMemo(() => {
@@ -20,7 +21,9 @@ export default function ExamplePageTemplate() {
       )
     );
   }, [slug]);
+
   console.log("Loaded example metadata:", example);
+
   useEffect(() => {
     if (!slug) return;
     console.log("Looking for slug:", slug);
@@ -33,12 +36,24 @@ export default function ExamplePageTemplate() {
       console.error("Error fetching metadata:", error);
     });
   }, [slug]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const tablet = width < 768;
+      setIsMobile(tablet);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <main
       className="main">
       <GoabPageBlock width="1200px">
-        <GoabBlock mb="l" mt="xl">
-          <GoabLink leadingIcon="chevron-back" mt="l" mb={"none"}>
+        <GoabBlock mb={isMobile ? "none" : "l"} mt={isMobile ? "s" : "xl"}>
+          <GoabLink leadingIcon="chevron-back" mt={isMobile ? "s" : "l"} mb={"none"}>
             <Link to="/examples">Back to Examples</Link>
           </GoabLink>
         </GoabBlock>

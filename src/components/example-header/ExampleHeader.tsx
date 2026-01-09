@@ -33,19 +33,19 @@ export const ExampleHeader: React.FC<Props> = ({ name, description, githubLink, 
 
         <GoabBlock gap="xl" direction="row" alignment="end" mt="none" mb="2xs" width="100%">
 
-          <GoabText size="heading-l" mt="l" mb="s">
+          <GoabText size="heading-l" mt="m" mb="xs">
             {name}
           </GoabText>
 
         </GoabBlock>
         {description && (
-          <GoabText size="body-m" mt="3xs" mb="l">
+          <GoabText size="body-l" mt="3xs" mb="l">
             {description}
           </GoabText>
         )}
         {(githubLink || figmaLink) && (
 
-          <GoabBlock gap="s" direction="row" mt="xl" mb="none">
+          <GoabBlock gap="s" direction="row" mt="m" mb="m">
             {githubLink && (
               <GoabTooltip content={'View Github issue'}>
                 <a className="github icon-link no-external-icon"

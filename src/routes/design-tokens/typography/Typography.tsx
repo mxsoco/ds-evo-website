@@ -15,9 +15,18 @@ interface TypographyToken extends Token {
   lineHeight: string;
 }
 
-export default function TypographyPage() {
+export default function TypographyPage({ filter }: { filter?: string } = {}) {
   const tokens: TypographyToken[] = TYPO_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  const search = (filter || "").toLowerCase();
+  const filteredTokens = tokens.filter((token) => {
+    const hay = `${token.tokenName} ${token.figmaTypeStyle} ${token.typeFamily} ${token.weight} ${token.fontSize} ${token.lineHeight}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (filteredTokens.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
@@ -33,7 +42,7 @@ export default function TypographyPage() {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <tr key={index}>
               <td style={{ font: getCssVarValue(`--${token.tokenName}`) }}>
                 {token.figmaTypeStyle}
@@ -55,7 +64,7 @@ export default function TypographyPage() {
   const renderMobile = () => {
     return (
       <GoabGrid minChildWidth="27rem" gap="l">
-        {getTokenGroups(tokens as Token[]).map(group =>
+        {getTokenGroups(filteredTokens as Token[]).map(group =>
           group.map((token: TypographyToken, idx: number) => (
             <GoabContainer key={idx}>
               <dl>

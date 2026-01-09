@@ -7,7 +7,7 @@ import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
 
-export default function BorderRadiusPage() {
+export default function BorderRadiusPage({ filter }: { filter?: string } = {}) {
   const tokens: Token[] = [
     {
       tokenName: "goa-border-radius-none",
@@ -53,6 +53,15 @@ export default function BorderRadiusPage() {
     },
   ];
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  const search = (filter || "").toLowerCase();
+  const filteredTokens = tokens.filter((token) => {
+    const hay = `${token.tokenName} ${token.figmaUsage} ${token.rem} ${token.px}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (filteredTokens.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
@@ -67,22 +76,22 @@ export default function BorderRadiusPage() {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((tokens, index) => (
             <tr key={index}>
               <td>
                 <div
                   className="token-block"
                   style={{
-                    borderRadius: getCssVarValue(`--${token.tokenName}`),
+                    borderRadius: getCssVarValue(`--${tokens.tokenName}`),
                   }}
                 />
               </td>
               <td>
-                <TokenSnippet code={token.tokenName} />
+                <TokenSnippet code={tokens.tokenName} />
               </td>
-              <td>{token.rem}</td>
-              <td>{token.px}</td>
-              <td>{token.figmaUsage}</td>
+              <td>{tokens.rem}</td>
+              <td>{tokens.px}</td>
+              <td>{tokens.figmaUsage}</td>
             </tr>
           ))}
         </tbody>
@@ -93,7 +102,7 @@ export default function BorderRadiusPage() {
   const renderMobile = () => {
     return (
       <GoabGrid minChildWidth="22rem" gap="l">
-        {getTokenGroups(tokens).map(group =>
+        {getTokenGroups(filteredTokens).map(group =>
           group.map((token, idx) => (
             <GoabContainer key={idx}>
               <div

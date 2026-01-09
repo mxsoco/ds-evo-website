@@ -8,3 +8,9 @@
   gap: var(--goa-button-gap);
   flex-wrap: wrap;
 }
+
+@media screen and (max-width: 623px) {
+    .component-header {
+        margin-top: var(--goa-space-xl);
+    }
+}

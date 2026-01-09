@@ -7,7 +7,7 @@ import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
 
-export default function BorderWidthPage() {
+export default function BorderWidthPage({ filter }: { filter?: string } = {}) {
   const tokens: Token[] = [
     {
       tokenName: "goa-border-width-none",
@@ -53,6 +53,15 @@ export default function BorderWidthPage() {
     },
   ];
   const { isDesktopContent } = useContext(DeviceWidthContext);
+  const search = (filter || "").toLowerCase();
+  const filteredTokens = tokens.filter((token) => {
+    const hay = `${token.tokenName} ${token.figmaUsage} ${token.rem} ${token.px}`.toLowerCase();
+    return hay.includes(search);
+  });
+
+  if (filteredTokens.length === 0 && search) {
+    return <div style={{ padding: "1rem", color: "var(--goa-color-text-secondary)" }}>No tokens match your search</div>;
+  }
 
   const renderDesktop = () => {
     return (
@@ -67,7 +76,7 @@ export default function BorderWidthPage() {
           </tr>
         </thead>
         <tbody>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <tr key={index}>
               <td>
                 <div
@@ -93,7 +102,7 @@ export default function BorderWidthPage() {
   const renderMobile = () => {
     return (
       <GoabGrid minChildWidth="22rem" gap="l">
-        {getTokenGroups(tokens).map(group =>
+        {getTokenGroups(filteredTokens).map(group =>
           group.map((token, idx) => (
             <GoabContainer key={idx}>
               <div
