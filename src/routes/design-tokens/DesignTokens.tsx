@@ -238,7 +238,7 @@ export default function DesignTokensOverviewPage() {
           </>
           ) : (
               
-            <EmptyState onButtonClick={resetFilters} />
+            <EmptyState onButtonClick={resetFilters} subline ={"Try adjusting your search."}/>
             
           )}
           
