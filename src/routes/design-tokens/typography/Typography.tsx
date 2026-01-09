@@ -1,6 +1,7 @@
 import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
 import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import TYPO_TOKENS from "./typography.json";
+export { TYPO_TOKENS };
 import { getTokenGroups } from "../getTokenGroups";
 import { Token } from "../token";
 import { useContext } from "react";

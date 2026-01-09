@@ -11,8 +11,7 @@ interface IconSizeToken extends Token {
   size: GoabIconSize | string;
 }
 
-export default function IconSizePage({ filter }: { filter?: string } = {}) {
-  const tokens: IconSizeToken[] = [
+export const ICON_SIZE_TOKENS: IconSizeToken[] = [
     {
       tokenName: "goa-icon-size-1",
       rem: "1rem",
@@ -77,7 +76,10 @@ export default function IconSizePage({ filter }: { filter?: string } = {}) {
       size: "large",
     },
 
-  ];
+];
+
+export default function IconSizePage({ filter }: { filter?: string } = {}) {
+  const tokens = ICON_SIZE_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
   const search = (filter || "").toLowerCase();
   const filteredTokens = tokens.filter((token) => {

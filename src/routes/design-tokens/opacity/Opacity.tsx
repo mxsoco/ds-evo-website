@@ -12,8 +12,7 @@ interface Token {
   figmaUsage: string;
 }
 
-export default function OpacityPage({ filter }: { filter?: string } = {}) {
-  const tokens: Token[] = [
+export const OPACITY_TOKENS: Token[] = [
     {
       tokenName: "goa-opacity-background-modal",
       percentage: "50%",
@@ -24,7 +23,10 @@ export default function OpacityPage({ filter }: { filter?: string } = {}) {
       percentage: "90%",
       figmaUsage: "Fill: Opacity/Background/Loading",
     },
-  ];
+];
+
+export default function OpacityPage({ filter }: { filter?: string } = {}) {
+  const tokens = OPACITY_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
   const search = (filter || "").toLowerCase();
   const filteredTokens = tokens.filter((token) => {

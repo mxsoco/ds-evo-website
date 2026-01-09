@@ -7,51 +7,53 @@ import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
 
+export const BORDER_RADIUS_TOKENS: Token[] = [
+  {
+    tokenName: "goa-border-radius-none",
+    rem: "0rem",
+    px: "0px",
+    figmaUsage: "Border-radius/None",
+  },
+  {
+    tokenName: "goa-border-radius-s",
+    rem: "0.125rem",
+    px: "2px",
+    figmaUsage: "Border-radius/Small",
+  },
+  {
+    tokenName: "goa-border-radius-m",
+    rem: "0.25rem",
+    px: "4px",
+    figmaUsage: "Border-radius/Medium",
+  },
+  {
+    tokenName: "goa-border-radius-l",
+    rem: "0.375rem",
+    px: "6px",
+    figmaUsage: "Border-radius/Large",
+  },
+  {
+    tokenName: "goa-border-radius-xl",
+    rem: "0.5rem",
+    px: "8px",
+    figmaUsage: "Border-radius/XLarge",
+  },
+  {
+    tokenName: "goa-border-radius-2xl",
+    rem: "0.625rem",
+    px: "10px",
+    figmaUsage: "Border-radius/2XLarge",
+  },
+  {
+    tokenName: "goa-border-radius-3xl",
+    rem: "0.75rem",
+    px: "12px",
+    figmaUsage: "Border-radius/3XLarge",
+  },
+];
+
 export default function BorderRadiusPage({ filter }: { filter?: string } = {}) {
-  const tokens: Token[] = [
-    {
-      tokenName: "goa-border-radius-none",
-      rem: "0rem",
-      px: "0px",
-      figmaUsage: "Border-radius/None",
-    },
-    {
-      tokenName: "goa-border-radius-s",
-      rem: "0.125rem",
-      px: "2px",
-      figmaUsage: "Border-radius/Small",
-    },
-    {
-      tokenName: "goa-border-radius-m",
-      rem: "0.25rem",
-      px: "4px",
-      figmaUsage: "Border-radius/Medium",
-    },
-    {
-      tokenName: "goa-border-radius-l",
-      rem: "0.375rem",
-      px: "6px",
-      figmaUsage: "Border-radius/Large",
-    },
-    {
-      tokenName: "goa-border-radius-xl",
-      rem: "0.5rem",
-      px: "8px",
-      figmaUsage: "Border-radius/XLarge",
-    },
-    {
-      tokenName: "goa-border-radius-2xl",
-      rem: "0.625rem",
-      px: "10px",
-      figmaUsage: "Border-radius/2XLarge",
-    },
-    {
-      tokenName: "goa-border-radius-3xl",
-      rem: "0.75rem",
-      px: "12px",
-      figmaUsage: "Border-radius/3XLarge",
-    },
-  ];
+  const tokens = BORDER_RADIUS_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
   const search = (filter || "").toLowerCase();
   const filteredTokens = tokens.filter((token) => {

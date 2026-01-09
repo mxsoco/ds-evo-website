@@ -7,8 +7,7 @@ import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
 
-export default function BorderWidthPage({ filter }: { filter?: string } = {}) {
-  const tokens: Token[] = [
+export const BORDER_WIDTH_TOKENS: Token[] = [
     {
       tokenName: "goa-border-width-none",
       rem: "0rem",
@@ -51,7 +50,10 @@ export default function BorderWidthPage({ filter }: { filter?: string } = {}) {
       px: "4px",
       figmaUsage: "Border-width/XLarge",
     },
-  ];
+];
+
+export default function BorderWidthPage({ filter }: { filter?: string } = {}) {
+  const tokens = BORDER_WIDTH_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
   const search = (filter || "").toLowerCase();
   const filteredTokens = tokens.filter((token) => {

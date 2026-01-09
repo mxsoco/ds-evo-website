@@ -11,16 +11,18 @@ import {
   GoabInput,
   GoabText
 } from "@abgov/react-components";
-import { useEffect, useState, useMemo } from "react";import { useDebounce } from "use-debounce";
-import BorderRadiusPage from "./border-radius/BorderRadius";
-import BorderWidthPage from "./border-width/BorderWidth";
-import ColorPage from "./color/Color";
-import IconSizePage from "./icon-size/IconSize";
-import OpacityPage from "./opacity/Opacity";
-import ShadowPage from "./shadow/Shadow";
-import SpacingPage from "./spacing/Spacing";
-import TypographyPage from "./typography/Typography";
+import { useEffect, useState, useMemo } from "react";
+import { useDebounce } from "use-debounce";
+import BorderRadiusPage, { BORDER_RADIUS_TOKENS } from "./border-radius/BorderRadius";
+import BorderWidthPage, { BORDER_WIDTH_TOKENS } from "./border-width/BorderWidth";
+import ColorPage, { COLOR_DATA } from "./color/Color";
+import IconSizePage, { ICON_SIZE_TOKENS } from "./icon-size/IconSize";
+import OpacityPage, { OPACITY_TOKENS } from "./opacity/Opacity";
+import ShadowPage, { SHADOW_TOKENS } from "./shadow/Shadow";
+import SpacingPage, { SPACING_TOKENS } from "./spacing/Spacing";
+import TypographyPage, { TYPO_TOKENS } from "./typography/Typography";
 import { SupportInfo } from "../../components/support-info/SupportInfo";
+import {EmptyState} from "../../components/EmptyState";
 import { DesignTokensLanguageContext } from "../../contexts/DesignTokensLanguageContext";
 import "./DesignToken.css";
 
@@ -29,18 +31,18 @@ export default function DesignTokensOverviewPage() {
   const [debouncedFilter] = useDebounce(filter, 300);
   const [tokenLanguage, setLanguage] = useState("");
   const [expandedAll, setExpandedAll] = useState<boolean>(false);
-  
   const [expandedList, setExpandedList] = useState<number[]>([]);
-    useEffect(() => {
-    setExpandedAll(expandedList.length === 4);
+
+  useEffect(() => {
+    setExpandedAll(expandedList.length === 8);
   }, [expandedList.length]);
 
   const expandOrCollapseAll = () => {
       setExpandedAll((prev) => {
-      const newState = !prev;
-      setExpandedList(newState ? [1, 2, 3, 4] : []);
-      return newState;
-    });
+        const newState = !prev;
+        setExpandedList(newState ? [1, 2, 3, 4, 5, 6, 7, 8] : []);
+        return newState;
+      });
   };
 
   const updateAccordion = (order: number, isOpen: boolean) => {
@@ -55,6 +57,47 @@ export default function DesignTokensOverviewPage() {
   const resetFilters = () => {
     setFilter("");
   };
+
+  const hasMatchTokens = (tokens: any[], filterStr: string) => {
+    if (!filterStr) return true;
+    const s = filterStr.toLowerCase();
+    return tokens.some((t) => {
+      const hay = Object.values(t).join(" ").toLowerCase();
+      return hay.includes(s);
+    });
+  };
+
+  const hasMatchColors = (colors: any[], filterStr: string) => {
+    if (!filterStr) return true;
+    const s = filterStr.toLowerCase();
+    return colors.some((c) => c.tokens.some((t: any) => Object.values(t).join(" ").toLowerCase().includes(s)));
+  };
+
+  const borderRadiusHas = useMemo(() => hasMatchTokens(BORDER_RADIUS_TOKENS, debouncedFilter), [debouncedFilter]);
+  const borderWidthHas = useMemo(() => hasMatchTokens(BORDER_WIDTH_TOKENS, debouncedFilter), [debouncedFilter]);
+  const colorHas = useMemo(() => hasMatchColors(COLOR_DATA, debouncedFilter), [debouncedFilter]);
+  const iconSizeHas = useMemo(() => hasMatchTokens(ICON_SIZE_TOKENS, debouncedFilter), [debouncedFilter]);
+  const opacityHas = useMemo(() => hasMatchTokens(OPACITY_TOKENS, debouncedFilter), [debouncedFilter]);
+  const shadowHas = useMemo(() => hasMatchTokens(SHADOW_TOKENS, debouncedFilter), [debouncedFilter]);
+  const spacingHas = useMemo(() => hasMatchTokens(SPACING_TOKENS, debouncedFilter), [debouncedFilter]);
+  const typographyHas = useMemo(() => hasMatchTokens(TYPO_TOKENS, debouncedFilter), [debouncedFilter]);
+
+  useEffect(() => {
+    if (debouncedFilter) {
+      const ids: number[] = [];
+      if (borderRadiusHas) ids.push(1);
+      if (borderWidthHas) ids.push(2);
+      if (colorHas) ids.push(3);
+      if (iconSizeHas) ids.push(4);
+      if (opacityHas) ids.push(5);
+      if (shadowHas) ids.push(6);
+      if (spacingHas) ids.push(7);
+      if (typographyHas) ids.push(8);
+      setExpandedList(ids);
+    } else {
+      setExpandedList([]);
+    }
+  }, [debouncedFilter, borderRadiusHas, borderWidthHas, colorHas, iconSizeHas, opacityHas, shadowHas, spacingHas, typographyHas]);
 
   useEffect(() => {
     const lang = localStorage.getItem("goa-docs-design-tokens-lang");
@@ -74,7 +117,7 @@ export default function DesignTokensOverviewPage() {
       <DesignTokensLanguageContext.Provider value={tokenLanguage}>
         <GoabPageBlock width="1200px">
           <GoabBlock direction="column" gap="none" maxWidth="735px" width="100%">
-            <GoabText size="heading-xl" mt="2xl">
+            <GoabText size="heading-xl" mt="2xl" mb="m">
               Design Tokens
             </GoabText>
             <GoabText size="body-l" mt="none" mb="xl">
@@ -111,31 +154,94 @@ export default function DesignTokensOverviewPage() {
             {expandedAll ? "Hide all sections" : "Show all sections"}
           </GoabButton>
 
-          <GoabAccordion open={expandedList.includes(1)} heading="Border radius" onChange={(open) => updateAccordion(1, open)}>
-              <BorderRadiusPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(2)} heading="Border width" onChange={(open) => updateAccordion(2, open)}>
-              <BorderWidthPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(3)} heading="Color" onChange={(open) => updateAccordion(3, open)}>
-              <ColorPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(4)} heading="Icon size" onChange={(open) => updateAccordion(4, open)}>
-              <IconSizePage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(5)} heading="Opacity" onChange={(open) => updateAccordion(5, open)}>
-              <OpacityPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(6)} heading="Shadow" onChange={(open) => updateAccordion(6, open)}>
-              <ShadowPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(7)} heading="Spacing" onChange={(open) => updateAccordion(7, open)}>
-              <SpacingPage filter={debouncedFilter} />
-          </GoabAccordion>
-          <GoabAccordion open={expandedList.includes(8)} heading="Typography" onChange={(open) => updateAccordion(8, open)}>
-              <TypographyPage filter={debouncedFilter} />
-          </GoabAccordion>
+          {(borderRadiusHas || borderWidthHas || colorHas || iconSizeHas || opacityHas || shadowHas || spacingHas || typographyHas) ? (
+            <>
+            {(!debouncedFilter || borderRadiusHas) && (
+              <GoabAccordion
+                open={expandedList.includes(1)}
+                heading="Border radius"
+                onChange={(open) => updateAccordion(1, open)}
+              >
+                <BorderRadiusPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
 
+            {(!debouncedFilter || borderWidthHas) && (
+              <GoabAccordion
+                open={expandedList.includes(2)}
+                heading="Border width"
+                onChange={(open) => updateAccordion(2, open)}
+              >
+                <BorderWidthPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || colorHas) && (
+              <GoabAccordion
+                open={expandedList.includes(3)}
+                heading="Color"
+                onChange={(open) => updateAccordion(3, open)}
+              >
+                <ColorPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || iconSizeHas) && (
+              <GoabAccordion
+                open={expandedList.includes(4)}
+                heading="Icon size"
+                onChange={(open) => updateAccordion(4, open)}
+              >
+                <IconSizePage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || opacityHas) && (
+              <GoabAccordion
+                open={expandedList.includes(5)}
+                heading="Opacity"
+                onChange={(open) => updateAccordion(5, open)}
+              >
+                <OpacityPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || shadowHas) && (
+              <GoabAccordion
+                open={expandedList.includes(6)}
+                heading="Shadow"
+                onChange={(open) => updateAccordion(6, open)}
+              >
+                <ShadowPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || spacingHas) && (
+              <GoabAccordion
+                open={expandedList.includes(7)}
+                heading="Spacing"
+                onChange={(open) => updateAccordion(7, open)}
+              >
+                <SpacingPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+
+            {(!debouncedFilter || typographyHas) && (
+              <GoabAccordion
+                open={expandedList.includes(8)}
+                heading="Typography"
+                onChange={(open) => updateAccordion(8, open)}
+              >
+                <TypographyPage filter={debouncedFilter} />
+              </GoabAccordion>
+            )}
+          </>
+          ) : (
+              
+            <EmptyState onButtonClick={resetFilters} />
+            
+          )}
+          
           <GoabDivider mt="3xl"></GoabDivider>
 
           <SupportInfo />

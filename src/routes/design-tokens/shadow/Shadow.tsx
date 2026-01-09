@@ -10,9 +10,7 @@ interface Token {
   value: string;
   figmaUsage: string;
 }
-
-export default function ShadowPage({ filter }: { filter?: string } = {}) {
-  const tokens: Token[] = [
+export const SHADOW_TOKENS: Token[] = [
     {
       tokenName: "goa-shadow-modal",
       value: "x=6, y=6, blur=6, spread=0, rgba(0,0,0,0.16)",
@@ -54,7 +52,10 @@ export default function ShadowPage({ filter }: { filter?: string } = {}) {
       figmaUsage: "Effect: Drop-shadow/600",
     },
 
-  ];
+];
+
+export default function ShadowPage({ filter }: { filter?: string } = {}) {
+  const tokens = SHADOW_TOKENS;
   const { isDesktopContent } = useContext(DeviceWidthContext);
   const search = (filter || "").toLowerCase();
   const filteredTokens = tokens.filter((token) => {

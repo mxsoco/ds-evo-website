@@ -2,6 +2,7 @@ import { GoabContainer, GoabGrid, GoabTable } from "@abgov/react-components";
 import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Spacing.css";
 import SPACING_TOKENS from "./spacing.json";
+export { SPACING_TOKENS };
 import { getTokenGroups } from "../getTokenGroups";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { useContext } from "react";

@@ -2,6 +2,7 @@ import { GoabContainer, GoabGrid, GoabTable, GoabText } from "@abgov/react-compo
 import { TokenSnippet } from "../../../components/token-snippet/TokenSnippet";
 import "./Color.css";
 import COLORS from "./colors.json";
+export const COLOR_DATA = COLORS;
 import React, { useContext } from "react";
 import { DeviceWidthContext } from "../../../contexts/DeviceWidthContext";
 import { getCssVarValue } from "../../../utils/styling";
