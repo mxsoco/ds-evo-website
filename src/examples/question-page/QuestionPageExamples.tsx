@@ -1,5 +1,5 @@
 import { SandboxHeader } from "../../components/sandbox/sandbox-header/sandboxHeader";
-import AskAUserOneQuestionAtATime from "../../examples/ask-a-user-one-question-at-a-time";
+import AskAUserOneQuestionAtATime from "../ask-a-user-one-question-at-a-time";
 import GiveBackgroundInformationBeforeAskingAQuestion
       from "../give-background-information-before-asking-a-question";
 import ShowMoreInformationToHelpAnswerAQuestion from "../show-more-information-to-help-answer-a-question";

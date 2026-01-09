@@ -4,8 +4,8 @@ import {
   GoabText
 } from "@abgov/react-components";
 import { ComponentContent } from "../components/component-content/ComponentContent";
-import css from "@routes/examples/patterns.module.css";
-import { ReviewPageExamples } from "@examples/review-page/ReviewPageExamples";
+import css from "../routes/examples/patterns.module.css";
+import { ReviewPageExamples } from "./examples/review-page/ReviewPageExamples";
 
 
 export function ReviewPage() {

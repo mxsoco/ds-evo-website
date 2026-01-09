@@ -5,9 +5,9 @@ import {
   GoabText
 } from "@abgov/react-components";
 import { ComponentContent } from "../components/component-content/ComponentContent";
-import css from "@routes/examples/patterns.module.css";
+import css from "../routes/examples/patterns.module.css";
 import { Link } from "react-router-dom";
-import { TaskListPageExamples } from "@examples/task-list-page/TaskListPageExamples";
+import { TaskListPageExamples } from "./task-list-page/TaskListPageExamples";
 
 export function TaskListPage() {
   return (

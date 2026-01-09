@@ -4,8 +4,8 @@ import {
   GoabText
 } from "@abgov/react-components";
 import { ComponentContent } from "../components/component-content/ComponentContent";
-import css from "@routes/examples/patterns.module.css";
-import { ResultPageExamples } from "@examples/result-page/ResultPageExamples";
+import css from "../routes/examples/patterns.module.css";
+import { ResultPageExamples } from "./result-page/ResultPageExamples";
 
 export function ResultPage() {
   return (

@@ -1,6 +1,6 @@
 import { ComponentContent } from "../components/component-content/ComponentContent";
 import { GoabDetails, GoabGrid, GoabText } from "@abgov/react-components";
-import css from "@routes/examples/patterns.module.css";
+import css from "../routes/examples/patterns.module.css";
 import { Link } from "react-router-dom";
 
 export function PublicForm() {

@@ -1,6 +1,6 @@
-import { RadioRevealSlotExample } from "@examples/radio/RadioRevealSlotExample";
+import { RadioRevealSlotExample } from "./examples/radio/RadioRevealSlotExample";
 import { SandboxHeader } from "../components/sandbox/sandbox-header/sandboxHeader";
-import { CheckboxRevealSlotExample } from "@examples/checkbox/CheckboxRevealSlotExample";
+import { CheckboxRevealSlotExample } from "./examples/checkbox/CheckboxRevealSlotExample";
 
 export default function RevealInputBasedOnASelection() {
 

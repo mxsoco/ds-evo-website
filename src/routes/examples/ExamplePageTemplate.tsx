@@ -16,7 +16,7 @@ export default function ExamplePageTemplate() {
   const ExampleComponent = useMemo(() => {
     if (!slug) return () => <div>Invalid slug</div>;
     return lazy(() =>
-      import(`../../examples/${slug}.tsx`).catch(() =>
+      import(`.././examples/${slug}.tsx`).catch(() =>
         import("../../routes/examples/FallbackExample")
       )
     );

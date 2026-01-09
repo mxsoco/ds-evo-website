@@ -2,9 +2,9 @@ import {
   GoabGrid, GoabTab, GoabTabs, GoabText
 } from "@abgov/react-components";
 
-import css from "@routes/examples/patterns.module.css";
+import css from "../routes/examples/patterns.module.css";
 import { ComponentContent } from "../components/component-content/ComponentContent";
-import { StartPageExamples } from "@examples/start-page/StartPageExamples";
+import { StartPageExamples } from "./examples/start-page/StartPageExamples";
 
 export function StartPage() {
 
