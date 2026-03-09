@@ -45,7 +45,7 @@ h3[id^="toc"] + p {
 
 .component-content--container {
   display: grid;
-  grid-template-columns: 1fr 12rem;
+  grid-template-columns: 1fr 200px;
   grid-gap: var(--goa-space-2xl);
   overflow: visible;
   margin-bottom: var(--goa-space-xl);
@@ -59,4 +59,18 @@ h3[id^="toc"] + p {
   flex: 1 1 auto;
   container: inline-size;
   min-width: 0;
+}
+
+.prose-content {
+    max-width: 70ch;
+    min-width: 0;
+}
+
+.prose-content code { 
+  font-family: Roboto Mono, monospace;
+  font-size: .875em;
+  background: var(--goa-color-greyscale-100, #f5f5f5);
+  padding: .125em .375em;
+  border-radius: 4px;
+  color: var(--goa-color-text-default, #333);
 }

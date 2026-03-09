@@ -138,22 +138,24 @@ export function TOC(props: TOCProps) {
   }
 
   return (
-    <nav className={css["toc"]}>
-      {items && items.map(({ title, tagName: element, id }, index) => {
-        return <div key={id}>
-          <a
-            className={`
-              ${css[`toc-item-${element.toLowerCase()}`]}
-              ${isActive(id, index) ? css["active"] : ""}
-            `}
-            href={getAnchorLink(id)}
-            onClick={(e) => handleClick(e, id)}
-          >
-            {title}
-          </a>
-        </div>
-      })}
-    </nav>
+    <div className={css["toc-sticky"]}>
+      <nav className={css["toc"]}>
+        {items && items.map(({ title, tagName: element, id }, index) => {
+          return <div key={id}>
+            <a
+              className={`
+                ${css[`toc-item-${element.toLowerCase()}`]}
+                ${isActive(id, index) ? css["active"] : ""}
+              `}
+              href={getAnchorLink(id)}
+              onClick={(e) => handleClick(e, id)}
+            >
+              {title}
+            </a>
+          </div>
+        })}
+      </nav>
+    </div>
   );
 }
 

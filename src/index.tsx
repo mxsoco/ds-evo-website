@@ -22,6 +22,10 @@ import { LanguageVersionContext, LanguageVersionProvider } from "./contexts/Lang
 import GetStartedOverviewPage from "./routes/get-started/GetStartedOverview";
 import GetStartedLayout from "./routes/get-started/GetStartedLayout";
 
+// Foundation
+import FoundationsLayout from "./routes/foundations/FoundationsLayout";
+import MotionPage from "./routes/foundations/motion";
+
 import App from './App';
 
 import './App.css';
@@ -44,6 +48,10 @@ root.render(
                       {/* Content Pages*/}
                       <Route path="get-started" element={<GetStartedLayout />}>
                         <Route index element={<GetStartedOverviewPage />} />
+                      </Route>
+                      {/* Content Pages*/}
+                      <Route path="foundations" element={<FoundationsLayout />}>
+                        <Route path="/foundations/motion" element={<MotionPage />} />
                       </Route>
 
                       <Route path="tokens" element={<DesignTokensOverviewPage />} errorElement={<ComponentNotFound />}/>

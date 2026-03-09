@@ -1,15 +1,15 @@
 import {
-  GoabCallout,
   GoabDivider,
   GoabSpacer,
   GoabText
 } from "@abgov/react-components";
 import { ComponentContent } from "../../components/component-content/ComponentContent";
+import { GoabxCallout } from "@abgov/react-components/experimental";
 
 export default function GetStartedOverviewPage() {
   return (
     <ComponentContent tocCssQuery="h2[id], h3[id]">
-        <GoabText size="heading-xl" mb="m" mt="xl">
+        <GoabText size="heading-xl" mb="m" mt="none">
             Starting with the design system
         </GoabText>
         <GoabText size="body-l" mt="none" mb="2xl">
@@ -19,11 +19,11 @@ export default function GetStartedOverviewPage() {
 
         <GoabDivider mb="3xl"></GoabDivider>
 
-        <GoabCallout type="information" size={"medium"} maxWidth={"650px"}>
+        <GoabxCallout type="information" size={"medium"} maxWidth={"650px"}>
             For more information on getting started with the Design System, visit the Design System v.1 documentation website to learn more on topics such as QA testing, automated accessibility etc.
             <GoabSpacer vSpacing="xs"></GoabSpacer>
             <a href={"https://design.alberta.ca/"} target="_blank">Visit design.alberta.ca</a>
-        </GoabCallout>
+        </GoabxCallout>
 
 
         <GoabText size="body-m" mb="m" mt="xl">
@@ -109,12 +109,12 @@ export default function GetStartedOverviewPage() {
             </li>
             </ol>
         </GoabText>
-        <GoabCallout type="information" heading={"Remember"} size={"medium"} maxWidth={"650px"}>
+        <GoabxCallout type="information" heading={"Remember"} size={"medium"} maxWidth={"650px"}>
             Avoid custom solutions without a genuine user need to prevent unnecessary work and save time.
             <GoabSpacer vSpacing="xs"></GoabSpacer>
             <a href={"https://www.figma.com/board/bFFeTY8CI2qOqCq7yvVXK6/Design-System---Governance-Process-Map?node-id=510-1364&t=gt7XnMUq1UsmJ7Lf-4"}>View
             the design system governance process</a>
-        </GoabCallout>
+        </GoabxCallout>
 
     </ComponentContent>
   );

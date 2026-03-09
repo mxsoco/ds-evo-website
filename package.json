@@ -11,9 +11,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@abgov/react-components": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/react-components",
-    "@abgov/ui-components-common": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/common",
-    "@abgov/web-components": "C:/Users/miguel.soco/OneDrive - Government of Alberta/Documents/ui-components/dist/libs/web-components",
+    "@abgov/design-tokens": "2.1.1",
+    "@abgov/react-components": "^6.11.0-dev.6",
+    "@abgov/ui-components-common": "1.11.0-dev.3",
+    "@abgov/web-components": "1.41.0-dev.9",
     "directly": "^2.0.6",
     "from": "^0.1.7",
     "highlight.js": "^11.11.1",
@@ -31,6 +32,7 @@
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/coverage-v8": "^1.6.1",
+    "baseline-browser-mapping": "^2.10.0",
     "typescript": "^5.9.3",
     "vite": "^5.4.21",
     "vitest": "^1.6.0",

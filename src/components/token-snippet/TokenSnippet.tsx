@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from "react";
 
 import "./TokenSnippet.css";
-import { GoabIcon } from "@abgov/react-components";
+import { GoabIcon, GoabIconButton } from "@abgov/react-components";
 import { DesignTokensLanguageContext } from "../../contexts/DesignTokensLanguageContext";
 
 interface Props {
@@ -36,6 +36,25 @@ export const TokenSnippet: FC<Props> = ({ code, className }) => {
       >
         Copied
       </span>
+    </div>
+  );
+};
+
+export const TokenSnippetx: FC<Props> = ({ code, className }) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const lang = useContext(DesignTokensLanguageContext);
+
+  function copyCode() {
+    let codeToCopy = `--${code}`;
+    navigator.clipboard.writeText(codeToCopy).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className={`goa-token-snippet ${className || ""}`}>
+      <GoabIconButton ml="xs" mt="3xs" size="small" icon={isCopied ? "checkmark" :  "copy"} onClick={copyCode} />
     </div>
   );
 };

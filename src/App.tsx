@@ -1,38 +1,20 @@
 import {
   GoabxWorkSideMenu,
-  GoabxWorkSideMenuItem
+  GoabxWorkSideMenuItem,
+  GoabxWorkSideMenuGroup
 } from "@abgov/react-components/experimental";
 
 import {
   GoabSpacer,
 } from "@abgov/react-components";
 
-import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { MenuContext, useMenu } from './contexts/MenuContext';
+import { MenuContext } from './contexts/MenuContext';
 import { PageHeaderProvider } from './contexts/PageHeaderContext';
 import { ScrollStateProvider, useScrollState } from './contexts/ScrollStateContext';
-import { PageHeader } from './components/PageHeader';
 import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "./constants/breakpoints";
-
-function WorkspaceContent() {
-  const location = useLocation();
-  const isHomeActive = location.pathname === '/';
-  const { isMobile } = useMenu();
-  const { scrollPosition } = useScrollState();
-
-  return (
-    <div
-      className={isMobile ? "mobile-content-container" : "desktop-card-container"}
-      data-scroll-state={isMobile ? undefined : scrollPosition}
-      style={isMobile ? { backgroundColor: "white", height: "100%", overflow: "auto" } : undefined}
-    >
-      {/* Only show the PageHeader on mobile when not on the homepage */}
-      {isMobile && !isHomeActive && <PageHeader title="Design system" />}
-      <Outlet />
-    </div>
-  );
-}
+import { WorkspaceLayout } from "./components/WorkspaceLayout";
 
 const MENU_STATE_KEY = 'workspace-menu-open';
 
@@ -125,9 +107,10 @@ export function App() {
       <PageHeaderProvider>
         <ScrollStateProvider>
           <div className="app-layout" style={{ opacity: visible ? "1" : "0" }}>
+            <div className="sidebar-left">
               <GoabxWorkSideMenu
-                  heading="Design system"
                   url={"/"}
+                  heading="Design system"
                   userName="Edna Mode"
                   userSecondaryText="edna.mode@example.com"
                   open={menuOpen}
@@ -141,65 +124,55 @@ export function App() {
                           icon="document"
                           label="Get started"
                           url={"/get-started"}
-                          onClick={() => handleNavigate("/get-started")}
                       />
 
-                      <GoabxWorkSideMenuItem
-                          icon="list"
-                          label="Foundations"
-                          url={"/foundations"}
-                          onClick={() => handleNavigate("/foundations")}
-                      />
+                      <GoabxWorkSideMenuGroup
+                          icon="shapes"
+                          heading="Foundations"
+                      >
+                        <GoabxWorkSideMenuGroup
+                          icon="shapes"
+                          heading="Style guide"
+                        >
+                          <GoabxWorkSideMenuItem
+                              url={"/foundations/motion"}
+                              label="Motion"
+                          />
+                        </GoabxWorkSideMenuGroup>
+                      </GoabxWorkSideMenuGroup>
 
                       <GoabxWorkSideMenuItem
                           icon="browsers"
                           label="Examples"
                           url={"/examples"}
-                          onClick={() => handleNavigate("/examples")}
                       />
 
-                      <GoabxWorkSideMenuItem
+                      <GoabxWorkSideMenuGroup
                           icon="shapes"
-                          label="Components"
-                          url={"/components"}
-                          onClick={() => handleNavigate("/components")}
+                          heading="Components"
                       >
                         <GoabxWorkSideMenuItem
-                            url={"/documents/sub1"}
-                            label="Sub menu item 1"
-                            onClick={() => handleNavigate("/documents/sub1")}
+                            url={"/button"}
+                            label="Button"
                         />
-                        <GoabxWorkSideMenuItem
-                            url={"/documents/sub2"}
-                            label="Sub menu item 2"
-                            onClick={() => handleNavigate("/documents/sub2")}
-                        />
-                        <GoabxWorkSideMenuItem
-                            url={"/documents/sub3"}
-                            label="Sub menu item 3"
-                            onClick={() => handleNavigate("/documents/sub3")}
-                        />
-                      </GoabxWorkSideMenuItem>
+                      </GoabxWorkSideMenuGroup>
 
                       <GoabxWorkSideMenuItem
                           icon="code-slash"
                           label="Tokens"
                           url={"/tokens"}
-                          onClick={() => handleNavigate("/tokens")}
                       />
 
                       <GoabxWorkSideMenuItem
                           icon="people"
                           label="Playbook"
                           url={"/playbook"}
-                          onClick={() => handleNavigate("/playbook")}
                       />
 
                       <GoabxWorkSideMenuItem
                           icon=""
                           label="Button"
                           url={"/button"}
-                          onClick={() => handleNavigate("/button")}
                       />
                     </>
                   }
@@ -209,36 +182,25 @@ export function App() {
                           icon="settings"
                           label="Get support"
                           url={"/settings"}
-                          onClick={() => handleNavigate("/settings")}
                       />
                       <GoabxWorkSideMenuItem
                           icon="search"
                           label="Search"
                           type="normal"
-                          badge="/"
+                          badge="Ctrl+K"
                           url={"/support"}
-                          onClick={() => handleNavigate("/support")}
                       />
                       <GoabxWorkSideMenuItem
                           icon="notifications"
                           label="Release notes"
                           url={"/release-notes"}
-                          onClick={() => handleNavigate("/release-notes")}
                       />
                       <GoabSpacer vSpacing="m"/>
                     </>
                   }
               />
-
-              <div 
-                className="card-container"
-                style={{
-                  flex: 1,
-                  overflow: isTablet ? "hidden" : "unset",
-                }}
-              >
-                <WorkspaceContent />
-              </div>
+            </div>
+            <WorkspaceLayout/>
           </div>
         </ScrollStateProvider>
       </PageHeaderProvider>

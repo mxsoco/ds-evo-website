@@ -1,8 +1,7 @@
-import { GoabPageBlock } from "@abgov/react-components";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { SupportInfo } from "../../components/support-info/SupportInfo";
 
-export default function GetStartedLayout() {
+export default function FoundationsLayout() {
   return (
     <div className="content-card">
       <Outlet />

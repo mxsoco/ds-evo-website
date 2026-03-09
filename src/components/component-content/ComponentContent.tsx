@@ -16,7 +16,9 @@ export function ComponentContent({tocCssQuery, contentClassName, children}: Prop
     <div className="component-content--container">
       <div style={{ maxWidth: tocCssQuery ? "auto" : "54rem"}}
            className={`component-content--content ${contentClassName ? contentClassName : ""}`}>
-        {children}
+        <article className="prose-content">
+          {children}
+        </article>
         <GoabDivider mt="3xl"></GoabDivider>
       </div>
       {tocCssQuery && <TOC cssQuery={tocCssQuery} />}

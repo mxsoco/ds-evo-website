@@ -1,0 +1,23 @@
+.motion-card-image.card-image {
+    overflow: initial;
+}
+
+code.token-name {
+    font-size: var(--goa-font-size-2);
+    word-break: break-all; 
+    margin-top: var(--goa-space-2xs);
+    display: inline-block;
+}
+
+dt {
+    color: var(--goa-color-text-secondary);
+    font: var(--goa-typography-body-xs);
+}
+
+dl {
+    margin: 0;
+}
+
+dl > dd.dd-style.item-name {
+    margin-bottom: var(--goa-space-l);
+}

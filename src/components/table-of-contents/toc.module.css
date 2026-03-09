@@ -1,13 +1,13 @@
 .toc {
   position: sticky;
-  top: 0;
-  padding: var(--goa-space-xl) 0 var(--goa-space-l) 0;
-  overscroll-behavior: contain;
-  width: 12rem;
-  height: fit-content;
+  top: var(--goa-space-l);
   @media screen and (max-width: 1230px) {
     display: none;
   }
+}
+
+.toc-sticky {
+  position: relative;
 }
 
 a.toc-item-h2,

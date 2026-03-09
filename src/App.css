@@ -1,4 +1,5 @@
 @import "@abgov/web-components/index.css";
+@import "@abgov/design-tokens/dist/tokens.css";
 
 /*   
 PAGE HEADER
@@ -40,9 +41,15 @@ PAGE HEADER
 /* Main app container */
 .app-layout {
   display: flex;
-  /*height: 100vh;*/
-  overflow: hidden;
   background-color: #F8F8F8;
+}
+
+.sidebar-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--goa-color-greyscale-50);
+  z-index: 2;
 }
 
 /* Error pages (404, 401, 500) */
@@ -126,14 +133,17 @@ a[target="_blank"]::after {
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" class="ionicon s-ion-icon" viewBox="0 0 512 512"><title>Open</title><path d="M384 224v184a40 40 0 01-40 40H104a40 40 0 01-40-40V168a40 40 0 0140-40h167.48M336 64h112v112M224 288L440 72" stroke="%230070C4" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>') center bottom no-repeat;
 }
 
-.component-content--container {
-  padding: var(--goa-space-m) 0 0;
-}
-
 goa-tab .component-content--container {
   padding: 1.5rem 0 0;
 }
 
+.content-card {
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid var(--goa-color-greyscale-150);
+  padding: var(--goa-space-xl) var(--goa-space-2xl);
+  min-height: calc(100vh - var(--goa-space-l) * 2);
+}
 /* ============================================================================
    DESKTOP CARD CONTAINER - Adaptive chrome based on vertical scroll state
    ============================================================================
@@ -151,6 +161,7 @@ goa-tab .component-content--container {
 /* Wrapper - provides the spacing around the card */
 .card-container {
   transition: padding 0.2s ease;
+
 }
 
 /* ============================================================================
@@ -205,49 +216,56 @@ goa-tab .component-content--container {
 
 @media screen and (max-width: 623px) {
 
-    .app-layout {
-        height: 100vh;
-    }
-        
-    .page-header {
-        padding: var(--goa-space-l);
-        width: 100%;
-        top: 0;
-        z-index: 100;
-        margin-bottom: 0;
-        transition: padding 0.2s ease, box-shadow 0.2s ease;
-    }
+  .content-card {
+    padding: var(--goa-space-m);
+    border-radius: 0;
+    border: none;
+    min-height: auto;
+  }
 
-    .page-header--collapsed {
-        background-color: white;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        padding: var(--goa-space-s) var(--goa-space-l);
-        border-bottom: 1px solid var(--goa-color-greyscale-150);
-        box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        transition: padding 200ms ease-in;
-    }
+  .app-layout {
+    height: 100vh;
+  }
+      
+  .page-header {
+    padding: var(--goa-space-l);
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    margin-bottom: 0;
+    transition: padding 0.2s ease, box-shadow 0.2s ease;
+  }
 
-    .card-container:has([data-scroll-state]) {
-        padding: 0;
-    }
+  .page-header--collapsed {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: var(--goa-space-s) var(--goa-space-l);
+    border-bottom: 1px solid var(--goa-color-greyscale-150);
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    transition: padding 200ms ease-in;
+  }
 
-    .card-container:has([data-scroll-state]) > * {
-        border-radius: 0;
-    }
-    
-    .error-page {
-        /* Subtract approximate header height (icon button ~44px + padding 32px) to prevent unnecessary scroll */
-        min-height: calc(100% - 76px);
-        padding: var(--goa-space-xl) var(--goa-space-m) 96px;
-    }
-    
-    .page-header__title-container > goa-icon-button:first-child {
-        margin-left: -12px;
-    }
+  .card-container:has([data-scroll-state]) {
+    padding: 0;
+  }
+
+  .card-container:has([data-scroll-state]) > * {
+    border-radius: 0;
+  }
+  
+.error-page {
+    /* Subtract approximate header height (icon button ~44px + padding 32px) to prevent unnecessary scroll */
+    min-height: calc(100% - 76px);
+    padding: var(--goa-space-xl) var(--goa-space-m) 96px;
+  }
+  
+  .page-header__title-container > goa-icon-button:first-child {
+    margin-left: -12px;
+  }
 
 }
 
